@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "project2"
+version = "0.1.0"
+description = "An application for apartment building residents to report issues by scanning a QR code."
+authors = ["Klaudia Ryciuk"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+Django = "^5.0.7"
+django-environ = "^0.11.2"
+psycopg2 = "^2.9.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
