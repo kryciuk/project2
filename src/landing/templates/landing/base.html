@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="keywords" content="property management" />
+        <meta name="description" content="property management app" />
+        <title>
+            {% block title %}
+            {% endblock title %}
+        </title>
+        <link rel="stylesheet"
+              type="text/css"
+              href="{% static 'landing/base.css' %}">
+    </head>
+    <body>
+        {% include "landing/navbar.html" %}
+        {% block content %}
+        {% endblock content %}
+    </body>
+</html>
