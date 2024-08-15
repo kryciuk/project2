@@ -10,4 +10,10 @@ class CustomUser(AbstractUser):
 
 
 class CustomInvitation(Invitation):
+    class GroupChoices(models.TextChoices):
+        GROUP__PROPERTY_MANAGER = "Property Manager"
+        GROUP__RESIDENT = "Resident"
+        GROUP__ADMINISTRATOR = "Administrator"
+
     building = models.ForeignKey(Building, on_delete=models.CASCADE, null=True, blank=True)
+    group = models.CharField(choices=GroupChoices.choices)

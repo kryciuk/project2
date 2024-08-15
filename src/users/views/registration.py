@@ -30,7 +30,7 @@ class RegisterView(FormView):
             invitation = CustomInvitation.objects.get(key=invite_key)
             form.instance.building = invitation.building
             self.request.user = form.save()
-        group = Group.objects.get(name="Resident")
+        group = Group.objects.get(name=invitation.group)
         group.user_set.add(self.request.user)
         messages.success(self.request, f"Account created successfully for {self.request.user.username}.")
         return redirect("index")

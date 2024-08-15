@@ -4,11 +4,18 @@ from django.contrib.auth.forms import UserCreationForm
 from users.models import CustomInvitation, CustomUser
 
 
-class SendInvitationForm(forms.ModelForm):
+class SendResidentInvitationForm(forms.ModelForm):
     class Meta:
         model = CustomInvitation
         fields = ["email", "building"]
         labels = {"email": "Email", "building": "Building"}
+
+
+class SendPropertyManagerInvitationForm(forms.ModelForm):
+    class Meta:
+        model = CustomInvitation
+        fields = ["email"]
+        labels = {"email": "Email"}
 
 
 class CreateUserForm(UserCreationForm):
