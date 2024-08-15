@@ -1,3 +1,4 @@
+{% load auth_extras %}
 {% load static %}
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -19,10 +20,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">Features</a>
-                <a class="nav-item nav-link" href="#">Pricing</a>
-                <a class="nav-item nav-link disabled" href="#">Disabled</a>
+                {% if request.user|has_group:"Propety Manager" or request.user.is_superuser %}
+                    <a class="nav-item nav-link"
+                       href="{% url "dashboard-property-manager" %}">Dashboard</a>
+                {% endif %}
+                {% if request.user|has_group:"Administrator" or request.user.is_superuser %}
+                    <a class="nav-item nav-link" href="{% url "dashboard-administrator" %}">Dashboard</a>
+                {% endif %}
             </div>
         </div>
     </div>
