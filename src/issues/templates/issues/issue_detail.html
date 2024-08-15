@@ -1,0 +1,23 @@
+{% extends "landing/base.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
+{% block content %}
+    <div class="container">
+        <div class="card card-body">
+            <article class="media content-section">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <a>Usterka: {{ issue.title }}</a>
+                        <br>
+                        <a>Opis: {{ issue.description }}</a>
+                        <br>
+                        <a>Autor zgłoszenia:{{ issue.reported_by }}</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+{% endblock content %}
