@@ -1,10 +1,10 @@
 from django.views.generic import TemplateView
 
 
-class ManagerDashboardView(TemplateView):
-    template_name = "dashboards/dashboard_property_manager.html"
+class AdministratorDashboardView(TemplateView):
+    template_name = "dashboards/dashboard_administrator.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Project2 - Property Manager"
+        context["title"] = "Project2 - Administrator"
         return context
