@@ -14,8 +14,13 @@ class Building(models.Model):
     )
     street = models.CharField(max_length=30, null=True, blank=True)
     street_number = models.IntegerField(null=True, blank=True)
-
-    # manager_id = models.ForeignKey()
+    manager = models.ForeignKey(
+        "users.CustomUser",
+        on_delete=models.CASCADE,
+        limit_choices_to={"groups__name": "Property Manager"},
+        related_name="managed_building",
+        null=True,
+    )
 
     def __str__(self):
         return f"{self.name} ID:{self.pk}"
