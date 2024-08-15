@@ -6,7 +6,7 @@ from communities.models import Building
 
 
 class CustomUser(AbstractUser):
-    building = models.ForeignKey(Building, on_delete=models.CASCADE, null=True, blank=True)
+    building = models.ForeignKey(Building, on_delete=models.CASCADE, null=True, blank=True, related_name="residents")
 
 
 class CustomInvitation(Invitation):
