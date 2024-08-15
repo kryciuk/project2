@@ -17,9 +17,10 @@ class Building(models.Model):
     manager = models.ForeignKey(
         "users.CustomUser",
         on_delete=models.CASCADE,
-        limit_choices_to={"groups__name": "Property Manager"},
+        limit_choices_to={"groups__name__in": ["Property Manager", "Administrator"]},
         related_name="managed_building",
         null=True,
+        blank=True,
     )
 
     def __str__(self):
