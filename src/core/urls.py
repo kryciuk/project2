@@ -26,12 +26,13 @@ urlpatterns = [
     path("", include("landing.urls")),
     path("building/", include("communities.urls")),
     path("user/", include("users.urls")),
+    path("issue/", include("issues.urls")),
     re_path(
         r"^invitations/accept-invite/(?P<key>\w+)/?$",
         CustomAcceptInvite.as_view(),
         name="accept-invite",
     ),
-    # path('dashboards/', include("dashboards.urls")),
+    path("dashboards/", include("dashboards.urls")),
     path("invitations/", include("invitations.urls", namespace="invitations")),
 ]
 if settings.DEBUG:

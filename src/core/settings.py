@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     "invitations",
 ]
 
-INSTALLED_EXTENSIONS = ["landing", "communities", "users", "dashboards"]
+INSTALLED_EXTENSIONS = ["landing", "communities", "users", "dashboards", "issues"]
 
 INSTALLED_APPS += INSTALLED_EXTENSIONS
 
