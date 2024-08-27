@@ -22,10 +22,13 @@
             <div class="navbar-nav">
                 {% if request.user|has_group:"Propety Manager" or request.user.is_superuser %}
                     <a class="nav-item nav-link"
-                       href="{% url "dashboard-property-manager" %}">Dashboard</a>
+                       href="{% url "dashboard-property-manager" %}">Dashboard Property Manager</a>
                 {% endif %}
                 {% if request.user|has_group:"Administrator" or request.user.is_superuser %}
-                    <a class="nav-item nav-link" href="{% url "dashboard-administrator" %}">Dashboard</a>
+                    <a class="nav-item nav-link" href="{% url "dashboard-administrator" %}">Dashboard Administrator</a>
+                {% endif %}
+                {% if request.user|has_group:"Resident" or request.user.is_superuser %}
+                    <a class="nav-item nav-link" href="{% url "dashboard-resident" %}">Dashboard Resident</a>
                 {% endif %}
             </div>
         </div>
