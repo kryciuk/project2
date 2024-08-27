@@ -31,6 +31,7 @@ class InvitePropertyManagerSendView(FormView):
 
     def form_valid(self, form):
         email_address = form.instance.email
+        # TODO get_or_create
         invitation = CustomInvitation.objects.filter(email__iexact=email_address).order_by("created").last()
         if invitation is None:
             # Do not use Invitation.objects.create or

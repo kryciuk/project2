@@ -15,5 +15,5 @@ class CustomInvitation(Invitation):
         GROUP__RESIDENT = "Resident"
         GROUP__ADMINISTRATOR = "Administrator"
 
-    building = models.ForeignKey(Building, on_delete=models.CASCADE, null=True, blank=True)
+    building = models.ForeignKey(Building, on_delete=models.CASCADE)
     group = models.CharField(choices=GroupChoices.choices)

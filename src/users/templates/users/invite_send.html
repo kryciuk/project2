@@ -6,8 +6,13 @@
 {% endblock title %}
 {% block content %}
     <form method="post">
-        {% csrf_token %}
-        {{ form | crispy }}
-        <button class="btn btn-outline-info" type="submit">Send</button>
+        <div class="container">
+            <h2 class="form-title-custom">Zaproś mieszkańca do aplikacji</h2>
+            {% csrf_token %}
+            {{ form | crispy }}
+            <div class="button-container">
+                <button class="btn btn-outline-info" type="submit">Wyślij zaproszenie</button>
+            </div>
+        </div>
     </form>
 {% endblock content %}

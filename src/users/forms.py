@@ -8,7 +8,7 @@ class SendResidentInvitationForm(forms.ModelForm):
     class Meta:
         model = CustomInvitation
         fields = ["email", "building"]
-        labels = {"email": "Email", "building": "Building"}
+        labels = {"email": "Email", "building": "Budynek"}
 
 
 class SendPropertyManagerInvitationForm(forms.ModelForm):
