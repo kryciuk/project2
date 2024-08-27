@@ -5,19 +5,14 @@
     {{ title }}
 {% endblock title %}
 {% block content %}
-    <div class="container">
-        <div class="card card-body">
-            <article class="media content-section">
-                <div class="media-body">
-                    <div class="article-metadata">
-                        <form method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {{ form | crispy }}
-                            <button class="btn btn-outline-info" type="submit">Update</button>
-                        </form>
-                    </div>
-                </div>
-            </article>
+    <form method="post">
+        <div class="container">
+            <h2 class="form-title-custom">Dodaj nowy budynek</h2>
+            {% csrf_token %}
+            {{ form | crispy }}
+            <div class="button-container">
+                <button class="btn btn-outline-info" type="submit">Stwórz</button>
+            </div>
         </div>
-    </div>
+    </form>
 {% endblock content %}

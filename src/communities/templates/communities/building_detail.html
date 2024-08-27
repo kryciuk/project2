@@ -1,0 +1,30 @@
+{% extends "landing/base.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
+{% block content %}
+    <div class="container">
+        <div class="card card-body">
+            <article class="media content-section">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <form method="get" enctype="multipart/form-data">
+                            {{ building.name }}
+                            {{ building.description }}
+                            {{ building.city }}
+                            {{ building.postal_code }}
+                            {{ building.street }} {{ building.street_number }}
+                            {{ building.manager }}
+                            <a class="btn btn-outline-info"
+                               href="{% url "building-update" building.id %}">Edit</a>
+                            <a class="btn btn-outline-info"
+                               href="{% url "resident-list" building.id %}">Residents</a>
+                        </form>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+{% endblock content %}
