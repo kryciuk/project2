@@ -34,6 +34,8 @@ urlpatterns = [
     ),
     path("dashboards/", include("dashboards.urls")),
     path("invitations/", include("invitations.urls", namespace="invitations")),
+    path("qr_code/", include("qr_code.urls", namespace="qr_code")),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

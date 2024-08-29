@@ -17,7 +17,7 @@ from core.env import env
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env.read_env(os.path.join(BASE_DIR, ".env"))
+env.read_env(os.path.join(BASE_DIR.parent, ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "allauth",
     "invitations",
+    "qr_code",
 ]
 
 INSTALLED_EXTENSIONS = ["users", "landing", "communities", "dashboards", "issues"]
@@ -132,7 +133,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "landing/static/landing")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static/")]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -165,3 +166,8 @@ EMAIL_HOST_PASSWORD = env("SMTP_PASSWORD")
 SITE_ID = 1
 INVITATIONS_SIGNUP_REDIRECT = "registration"
 INVITATIONS_INVITATIONS_MODEL = "CustomInvitation"
+
+# MEDIA
+
+MEDIA_URL = "media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
