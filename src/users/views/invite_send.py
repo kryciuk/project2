@@ -24,6 +24,11 @@ class InviteResidentSendView(FormView):
             invitation.send_invitation(request=self.request)
         return redirect("dashboard-property-manager")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["invite"] = "invite_resident"
+        return context
+
 
 class InvitePropertyManagerSendView(FormView):
     template_name = "users/invite_send.html"
@@ -42,3 +47,8 @@ class InvitePropertyManagerSendView(FormView):
             )
             invitation.send_invitation(request=self.request)
         return redirect("dashboard-administrator")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["invite"] = "invite_property_manager"
+        return context

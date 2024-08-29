@@ -5,9 +5,15 @@
     {{ title }}
 {% endblock title %}
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form | crispy }}
-        <button class="btn btn-outline-info" type="submit">Send</button>
-    </form>
+    <div class="container">
+        <h2 class="form-title-custom">Rejestracja</h2>
+        <h3 class="form-title-custom">{{ building }}</h3>
+        <form method="post">
+            {% csrf_token %}
+            <small>{{ form | crispy }}</small>
+            <div class="button-container">
+                <button class="btn btn-outline-info" type="submit">Send</button>
+            </div>
+        </form>
+    </div>
 {% endblock content %}

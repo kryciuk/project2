@@ -7,7 +7,15 @@
 {% block content %}
     <form method="post">
         <div class="container">
-            <h2 class="form-title-custom">Zaproś mieszkańca do aplikacji</h2>
+            <h2 class="form-title-custom">
+                Zaproś
+                {% if invite == "invite_resident" %}
+                    mieszkańca
+                {% else %}
+                    zarządcę
+                {% endif %}
+                do aplikacji
+            </h2>
             {% csrf_token %}
             {{ form | crispy }}
             <div class="button-container">

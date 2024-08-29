@@ -14,10 +14,10 @@ class RegisterView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Project2 - Registration"
+        invite_key = self.request.session.get("invite_key")
+        invitation = CustomInvitation.objects.get(key=invite_key)
+        context["building"] = invitation.building
         return context
-
-    def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
 
     def form_invalid(self, form):
         return super().form_invalid(form)
