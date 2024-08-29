@@ -6,11 +6,15 @@
 {% endblock title %}
 {% block content %}
     <div class="container">
-        <h1>Manage</h1>
-        <a class="btn-info-outline" href="{% url 'invite-resident-send' %}">Send Invite</a>
-        <br>
-        <a class="btn-info-outline" href="{% url 'building-list' %}">Buildings</a>
-        <br>
-        <a class="btn-info-outline" href="{% url 'issue-list' %}">Reported Issues</a>
+        <h2 class="form-title-custom">Zarządca</h2>
+        <div class="mt-2">
+            <a class="btn btn-outline-info" href="{% url 'building-list' %}">Budynki</a>
+        </div>
+        <div class="mt-2">
+            <a class="btn btn-outline-info" href="{% url 'issue-list' %}">Zgłoszone problemy</a>
+            <div class="mt-2">
+                <a class="btn btn-outline-info" href="{% url 'invite-resident-send' %}">Zaproś mieszkańca</a>
+            </div>
+        </div>
     </div>
 {% endblock content %}

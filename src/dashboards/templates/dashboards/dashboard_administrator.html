@@ -6,13 +6,16 @@
 {% endblock title %}
 {% block content %}
     <div class="container">
-        <h1>Manage</h1>
-        <a class="btn-info-outline" href="{% url 'building-create' %}">Create Building</a>
-        <br>
-        <a class="btn-info-outline" href="{% url 'building-list' %}">Buildings</a>
-        <br>
-        <a class="btn-info-outline"
-           href="{% url 'invite-property-manager-send' %}">Send Invite to Property Manager</a>
-        <br>
+        <h2 class="form-title-custom">Administrator</h2>
+        <div class="mt-2">
+            <a class="btn btn-outline-info" href="{% url 'building-create' %}">Stwórz budynek</a>
+        </div>
+        <div class="mt-2">
+            <a class="btn btn-outline-info" href="{% url 'building-list' %}">Budynki</a>
+        </div>
+        <div class="mt-2">
+            <a class="btn btn-outline-info"
+               href="{% url 'invite-property-manager-send' %}">Zaproś nowego zarządcę</a>
+        </div>
     </div>
 {% endblock content %}
