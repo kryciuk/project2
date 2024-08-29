@@ -11,25 +11,35 @@
             <div class="media-body">
                 <div class="article-metadata">
                     <form method="get" enctype="multipart/form-data">
-                        <a class="blockquote">{{ building.name }}</a>
-                        <br>
-                        {{ building.description }}
-                        <br>
-                        {{ building.city }}
-                        <br>
-                        {{ building.postal_code }}
-                        <br>
-                        {{ building.street }} {{ building.street_number }}
-                        <br>
-                        {{ building.manager }}
-                        <br>
-                        <a class="btn btn-outline-info"
-                           href="{% url "building-update" building.id %}">Edit</a>
-                        <a class="btn btn-outline-info"
-                           href="{% url "resident-list" building.id %}">Residents</a>
-                        <a download
-                           class="btn btn-outline-info"
-                           href="{% url 'building-download' id_building=building.id filename='qr_code.png' %}">QR code</a>
+                        <h2 class="form-title-custom">{{ building.name }}</h2>
+                        <div>
+                            <strong>Opis budynku:</strong> {{ building.description }}
+                        </div>
+                        <div>
+                            <strong>Miejscowość:</strong> {{ building.city }}
+                        </div>
+                        <div>
+                            <strong>Kod pocztowy:</strong> {{ building.postal_code }}
+                        </div>
+                        <div>
+                            <strong>Adres:</strong> {{ building.street }} {{ building.street_number }}
+                        </div>
+                        <div>
+                            <strong>Zarządca:</strong> {{ building.manager }}
+                        </div>
+                        <div class="mt-4">
+                            <a class="btn btn-outline-info"
+                               href="{% url "building-update" building.id %}">Edytuj</a>
+                        </div>
+                        <div class="mt-1">
+                            <a class="btn btn-outline-info"
+                               href="{% url "resident-list" building.id %}">Mieszkańcy</a>
+                        </div>
+                        <div class="mt-1">
+                            <a download
+                               class="btn btn-outline-info"
+                               href="{% url 'building-download' id_building=building.id filename='qr_code.png' %}">QR code</a>
+                        </div>
                     </form>
                 </div>
             </div>

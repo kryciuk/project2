@@ -8,7 +8,7 @@
     <form method="post">
         <div class="container">
             <h2 class="form-title-custom">
-                {% if 'view' == "create" %}
+                {% if view == "create" %}
                     Dodaj nowy
                 {% else %}
                     Edytuj
@@ -19,7 +19,7 @@
             <small>{{ form | crispy }}</small>
             <div class="button-container">
                 <button class="btn btn-outline-info" type="submit">
-                    {% if 'view' == "create" %}
+                    {% if view == "create" %}
                         Stwórz
                     {% else %}
                         Edytuj

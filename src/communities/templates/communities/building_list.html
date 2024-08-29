@@ -5,15 +5,9 @@
     {{ title }}
 {% endblock title %}
 {% block content %}
-    <article class="media content-section">
-        <div class="media-body">
-            <div class="article-metadata">
-                {% for building in buildings %}
-                    <div class="container">
-                        <a href="{% url "building-detail" building.id %}">{{ building }}</a>
-                    </div>
-                {% endfor %}
-            </div>
+    {% for building in buildings %}
+        <div class="container">
+            <a href="{% url "building-detail" building.id %}">{{ building }}</a>
         </div>
-    </article>
+    {% endfor %}
 {% endblock content %}
