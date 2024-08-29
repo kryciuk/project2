@@ -7,11 +7,24 @@
 {% block content %}
     <form method="post">
         <div class="container">
-            <h2 class="form-title-custom">Dodaj nowy budynek</h2>
+            <h2 class="form-title-custom">
+                {% if 'view' == "create" %}
+                    Dodaj nowy
+                {% else %}
+                    Edytuj
+                {% endif %}
+                budynek
+            </h2>
             {% csrf_token %}
-            {{ form | crispy }}
+            <small>{{ form | crispy }}</small>
             <div class="button-container">
-                <button class="btn btn-outline-info" type="submit">Stwórz</button>
+                <button class="btn btn-outline-info" type="submit">
+                    {% if 'view' == "create" %}
+                        Stwórz
+                    {% else %}
+                        Edytuj
+                    {% endif %}
+                </button>
             </div>
         </div>
     </form>
