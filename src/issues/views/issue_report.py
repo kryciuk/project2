@@ -29,7 +29,7 @@ class IssueReportView(FormView):
         if form.instance.building.manager is None:
             recipient_list = [user.email for user in CustomUser.objects.filter(groups__name="Administrator")]
         else:
-            recipient_list = form.instance.building.manager.email
+            recipient_list = [form.instance.building.manager.email]
         send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
         return super().form_valid(form)
