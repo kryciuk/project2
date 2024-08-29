@@ -171,3 +171,7 @@ INVITATIONS_INVITATIONS_MODEL = "CustomInvitation"
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+# LOGIN
+
+LOGIN_URL = "login"
