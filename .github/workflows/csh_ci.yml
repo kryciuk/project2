@@ -63,4 +63,4 @@ jobs:
       continue-on-error: true
     - name: Run Ruff
       run: |
-        poetry run ruff src
+        poetry run ruff check src
