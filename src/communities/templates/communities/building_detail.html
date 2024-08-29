@@ -13,19 +13,49 @@
                     <form method="get" enctype="multipart/form-data">
                         <h2 class="form-title-custom">{{ building.name }}</h2>
                         <div>
-                            <strong>Opis budynku:</strong> {{ building.description }}
+                            <strong>Opis budynku:</strong>
+                            {% if building.description is None %}
+                                ---
+                            {% else %}
+                                {{ building.description }}
+                            {% endif %}
                         </div>
                         <div>
-                            <strong>Miejscowość:</strong> {{ building.city }}
+                            <strong>Miejscowość:</strong>
+                            {% if building.city is None %}
+                                ---
+                            {% else %}
+                                {{ building.city }}
+                            {% endif %}
                         </div>
                         <div>
-                            <strong>Kod pocztowy:</strong> {{ building.postal_code }}
+                            <strong>Kod pocztowy:</strong>
+                            {% if building.postal_code is None %}
+                                ---
+                            {% else %}
+                                {{ building.postal_code }}
+                            {% endif %}
                         </div>
                         <div>
-                            <strong>Adres:</strong> {{ building.street }} {{ building.street_number }}
+                            <strong>Adres:</strong>
+                            {% if building.street is None %}
+                                ---
+                            {% else %}
+                                {{ building.street }}
+                            {% endif %}
+                            {% if building.street_number is None %}
+                                ---
+                            {% else %}
+                                {{ building.street_number }}
+                            {% endif %}
                         </div>
                         <div>
-                            <strong>Zarządca:</strong> {{ building.manager }}
+                            <strong>Zarządca:</strong>
+                            {% if building.manager is None %}
+                                ---
+                            {% else %}
+                                {{ building.manager }}
+                            {% endif %}
                         </div>
                         <div class="mt-4">
                             <a class="btn btn-outline-info"
