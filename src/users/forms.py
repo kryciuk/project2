@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.utils.translation import gettext_lazy as _
 
 from users.models import CustomInvitation, CustomUser
 
@@ -8,14 +9,14 @@ class SendResidentInvitationForm(forms.ModelForm):
     class Meta:
         model = CustomInvitation
         fields = ["email", "building"]
-        labels = {"email": "Email", "building": "Budynek"}
+        labels = {"email": _("Email"), "building": _("Building")}
 
 
 class SendPropertyManagerInvitationForm(forms.ModelForm):
     class Meta:
         model = CustomInvitation
         fields = ["email"]
-        labels = {"email": "Email"}
+        labels = {"email": _("Email")}
 
 
 class CreateUserForm(UserCreationForm):
@@ -30,19 +31,19 @@ class CreateUserForm(UserCreationForm):
             "password2",
         ]
         labels = {
-            "username": "Username",
-            "first_name": "First name",
-            "last_name": "Last name",
-            "email": "Email",
+            "username": _("Username"),
+            "first_name": _("First name"),
+            "last_name": _("Last name"),
+            "email": _("Email"),
         }
 
         error_messages = {
-            "username_exists": "User with this username already exists!",
-            "email_exists": "User with this email already exists!",
-            "password_mismatch": "The two password fields didn't match.",
-            "first_name_required": "This field is required.",
-            "last_name_required": "This field is required.",
-            "email_required": "This field is required.",
+            "username_exists": _("User with this username already exists!"),
+            "email_exists": _("User with this email already exists!"),
+            "password_mismatch": _("The two password fields didn't match."),
+            "first_name_required": _("This field is required."),
+            "last_name_required": _("This field is required."),
+            "email_required": _("This field is required."),
         }
 
     def clean_username(self):

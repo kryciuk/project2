@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.shortcuts import redirect
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import FormView
 
 from users.forms import CreateUserForm
@@ -32,5 +33,5 @@ class RegisterView(FormView):
             self.request.user = form.save()
         group = Group.objects.get(name=invitation.group)
         group.user_set.add(self.request.user)
-        messages.success(self.request, f"Account created successfully for {self.request.user.username}.")
+        messages.success(self.request, _(f"Account created successfully for {self.request.user.username}."))
         return redirect("index")

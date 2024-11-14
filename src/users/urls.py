@@ -5,6 +5,7 @@ from users.views import (
     InviteResidentSendView,
     RegisterView,
     UserLoginView,
+    UserLogoutView,
 )
 
 urlpatterns = [
@@ -12,4 +13,5 @@ urlpatterns = [
     path("invite-property-manager", InvitePropertyManagerSendView.as_view(), name="invite-property-manager-send"),
     path("signup", RegisterView.as_view(), name="registration"),
     path("login", UserLoginView.as_view(), name="login"),
+    path("logout/", UserLogoutView.as_view(), name="logout"),
 ]
