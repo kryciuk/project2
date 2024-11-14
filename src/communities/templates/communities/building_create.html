@@ -1,4 +1,5 @@
 {% extends "landing/base.html" %}
+{% load i18n %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% block title %}
@@ -9,20 +10,20 @@
         <div class="container">
             <h2 class="form-title-custom">
                 {% if view == "create" %}
-                    Dodaj nowy
+                    {% trans "Add new" %}
                 {% else %}
-                    Edytuj
+                    {% trans "Edit" %}
                 {% endif %}
-                budynek
+                {% trans "building" %}
             </h2>
             {% csrf_token %}
             <small>{{ form | crispy }}</small>
             <div class="button-container">
                 <button class="btn btn-outline-info" type="submit">
                     {% if view == "create" %}
-                        Stwórz
+                        {% trans "Create" %}
                     {% else %}
-                        Edytuj
+                        {% trans "Edit" %}
                     {% endif %}
                 </button>
             </div>

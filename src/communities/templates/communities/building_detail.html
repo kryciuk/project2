@@ -1,4 +1,5 @@
 {% extends "landing/base.html" %}
+{% load i18n %}
 {% load qr_code %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
@@ -13,7 +14,7 @@
                     <form method="get" enctype="multipart/form-data">
                         <h2 class="form-title-custom">{{ building.name }}</h2>
                         <div>
-                            <strong>Opis budynku:</strong>
+                            <strong>{% trans "Building description:" %}</strong>
                             {% if building.description is None %}
                                 ---
                             {% else %}
@@ -21,7 +22,7 @@
                             {% endif %}
                         </div>
                         <div>
-                            <strong>Miejscowość:</strong>
+                            <strong>{% trans "City:" %}</strong>
                             {% if building.city is None %}
                                 ---
                             {% else %}
@@ -29,7 +30,7 @@
                             {% endif %}
                         </div>
                         <div>
-                            <strong>Kod pocztowy:</strong>
+                            <strong>{% trans "Postal code:" %}</strong>
                             {% if building.postal_code is None %}
                                 ---
                             {% else %}
@@ -37,7 +38,7 @@
                             {% endif %}
                         </div>
                         <div>
-                            <strong>Adres:</strong>
+                            <strong>{% trans "Address:" %}</strong>
                             {% if building.street is None %}
                                 ---
                             {% else %}
@@ -50,7 +51,7 @@
                             {% endif %}
                         </div>
                         <div>
-                            <strong>Zarządca:</strong>
+                            <strong>{% trans "Manager:" %}</strong>
                             {% if building.manager is None %}
                                 ---
                             {% else %}
@@ -59,11 +60,11 @@
                         </div>
                         <div class="mt-4">
                             <a class="btn btn-outline-info"
-                               href="{% url "building-update" building.id %}">Edytuj</a>
+                               href="{% url "building-update" building.id %}">{% trans "Edit" %}</a>
                         </div>
                         <div class="mt-1">
                             <a class="btn btn-outline-info"
-                               href="{% url "resident-list" building.id %}">Mieszkańcy</a>
+                               href="{% url "resident-list" building.id %}">{% trans "Residents" %}</a>
                         </div>
                         <div class="mt-1">
                             <a download
