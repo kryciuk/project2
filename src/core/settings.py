@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
+from allauth.core.internal.httpkit import redirect
+from django.conf.global_settings import LOCALE_PATHS, LOGIN_REDIRECT_URL
+from urllib3 import request
+
 from core.env import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -55,6 +59,7 @@ INSTALLED_APPS += INSTALLED_EXTENSIONS
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -119,6 +124,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
+LANGUAGES = [("en", "English"), ("pl", "Polish")]
+
+LOCALE_PATHS = [BASE_DIR, "locale"]
+
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
@@ -126,7 +135,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
