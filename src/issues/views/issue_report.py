@@ -36,4 +36,4 @@ class IssueReportView(FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("dashboard-property-manager")
+        return reverse("dashboard-resident")
