@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     "qr_code",
 ]
 
-INSTALLED_EXTENSIONS = ["users", "landing", "communities", "dashboards", "issues"]
+INSTALLED_EXTENSIONS = ["users", "landing", "communities", "dashboards", "issues",]
 
 INSTALLED_APPS += INSTALLED_EXTENSIONS
 
