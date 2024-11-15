@@ -8,7 +8,9 @@
 {% block content %}
     <div class="container">
         <h2 class="form-title-custom">{% trans "Registration" %}</h2>
-        <h3 class="form-title-custom">{{ building }}</h3>
+        <h3 class="form-title-custom">
+            {% if building is not None %}{{ building }}{% endif %}
+        </h3>
         <form method="post">
             {% csrf_token %}
             <small>{{ form | crispy }}</small>

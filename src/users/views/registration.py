@@ -34,4 +34,10 @@ class RegisterView(FormView):
         group = Group.objects.get(name=invitation.group)
         group.user_set.add(self.request.user)
         messages.success(self.request, _(f"Account created successfully for {self.request.user.username}."))
-        return redirect("index")
+        match invitation.group:
+            case "Property Manager":
+                return redirect("dashboard-property-manager")
+            case "Administrator":
+                return redirect("dashboard-administrator")
+            case "Resident":
+                return redirect("dashboard-resident")
