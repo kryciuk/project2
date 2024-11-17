@@ -7,10 +7,11 @@ from issues.models import Issue
 class IssueForm(ModelForm):
     class Meta:
         model = Issue
-        fields = ["title", "description", "place", "severity"]
+        fields = ["title", "description", "place", "severity", "photo"]
         labels = {
             "title": _("Title"),
             "description": _("Description"),
             "place": _("Location"),
             "severity": _("Severity"),
+            "photo": _("Photo"),
         }

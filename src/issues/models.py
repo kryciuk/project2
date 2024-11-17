@@ -30,6 +30,7 @@ class Issue(models.Model):
     place = models.CharField(choices=IssuePlaceChoices.choices)
     severity = models.CharField(choices=IssueSeverityChoices.choices)
     status = models.CharField(choices=IssueStatusChoices.choices)
+    photo = models.ImageField(upload_to="media/issues", null=True, blank=True)
     reported_by = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, related_name="reported_issues")
     assigned_to = models.ForeignKey(
         CustomUser, on_delete=models.SET_NULL, null=True, blank=True, related_name="assigned_issues"
