@@ -44,3 +44,6 @@ class Issue(models.Model):
 
     def get_absolute_url(self):
         return reverse("building-create")
+
+    def get_photo_url(self):
+        return self.photo.url

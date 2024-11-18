@@ -1,4 +1,5 @@
 {% extends "landing/base.html" %}
+{% load i18n %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% block title %}
@@ -6,10 +7,15 @@
 {% endblock title %}
 {% block content %}
     <div class="container">
-        <a>Usterka: {{ issue.title }}</a>
+        <strong>{% trans "Issue" %}:</strong><a>{{ issue.title }}</a>
         <br>
-        <a>Opis: {{ issue.description }}</a>
+        <strong>{% trans "Description" %}:</strong><a>{{ issue.description }}</a>
         <br>
-        <a>Autor zgłoszenia: {{ issue.reported_by }}</a>
+        <strong>{% trans "Reported by" %}:</strong><a>{{ issue.reported_by }}</a>
+        <br>
+        <strong>{% trans "Photo" %}:</strong>
+        <a href="{{ issue.get_photo_url }}" target="_blank">
+            <img src="{{ issue.photo }}" alt="CLICK">
+        </a>
     </div>
 {% endblock content %}
