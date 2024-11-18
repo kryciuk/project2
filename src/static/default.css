@@ -3080,6 +3080,10 @@ fieldset:disabled a.btn {
 .btn-outline-secondary {
   color: #6c757d;
   border-color: #6c757d;
+  border-width: 1px;
+  padding: 4px 8px;
+  font-size: 14px;
+  line-height: 1.2;
 }
 
 .btn-outline-secondary:hover {
@@ -3273,6 +3277,7 @@ fieldset:disabled a.btn {
 .btn-outline-dark {
   color: #343a40;
   border-color: #343a40;
+  width: 100%;
 }
 
 .btn-outline-dark:hover {
@@ -11811,9 +11816,3 @@ select:focus {
             align-items: center;
             flex-direction: column;
         }
-
- .btn-outline-dark {
-  color: #343a40;
-  border-color: #343a40;
-  width: 100%;
-}
