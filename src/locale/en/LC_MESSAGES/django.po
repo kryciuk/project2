@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-17 19:21+0100\n"
+"POT-Creation-Date: 2024-11-18 21:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,7 @@ msgid "Name"
 msgstr ""
 
 #: .\communities\forms.py:13 .\issues\forms.py:13
+#: .\issues\templates\issues\issue_detail.html:12
 msgid "Description"
 msgstr ""
 
@@ -89,12 +90,34 @@ msgstr ""
 msgid "Residents"
 msgstr ""
 
-#: .\communities\templates\communities\building_list.html:12
+#: .\communities\templates\communities\building_list.html:15
+#: .\dashboards\templates\dashboards\dashboard_administrator.html:15
+#: .\dashboards\templates\dashboards\dashboard_property_manager.html:12
+msgid "Buildings"
+msgstr ""
+
+#: .\communities\templates\communities\building_list.html:17
 msgid "Currently there are no buildings..."
 msgstr ""
 
-#: .\communities\templates\communities\building_list.html:19
+#: .\communities\templates\communities\building_list.html:26
 msgid "Add new building"
+msgstr ""
+
+#: .\communities\views\building_create.py:23
+msgid "Building created successfully."
+msgstr ""
+
+#: .\dashboards\filters.py:7 .\issues\forms.py:12
+msgid "Title"
+msgstr ""
+
+#: .\dashboards\filters.py:8
+msgid "Status"
+msgstr ""
+
+#: .\dashboards\filters.py:9 .\issues\forms.py:15
+msgid "Severity"
 msgstr ""
 
 #: .\dashboards\templates\dashboards\dashboard_administrator.html:10
@@ -103,11 +126,6 @@ msgstr ""
 
 #: .\dashboards\templates\dashboards\dashboard_administrator.html:12
 msgid "Create building"
-msgstr ""
-
-#: .\dashboards\templates\dashboards\dashboard_administrator.html:15
-#: .\dashboards\templates\dashboards\dashboard_property_manager.html:12
-msgid "Buildings"
 msgstr ""
 
 #: .\dashboards\templates\dashboards\dashboard_administrator.html:19
@@ -122,19 +140,19 @@ msgstr ""
 msgid "Invite Resident"
 msgstr ""
 
-#: .\issues\forms.py:12
-msgid "Title"
+#: .\dashboards\templates\dashboards\dashboard_resident.html:17
+msgid "Search"
+msgstr ""
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:26
+msgid "No entries to display."
 msgstr ""
 
 #: .\issues\forms.py:14
 msgid "Location"
 msgstr ""
 
-#: .\issues\forms.py:15
-msgid "Severity"
-msgstr ""
-
-#: .\issues\forms.py:16
+#: .\issues\forms.py:16 .\issues\templates\issues\issue_detail.html:16
 msgid "Photo"
 msgstr ""
 
@@ -176,6 +194,14 @@ msgstr ""
 
 #: .\issues\models.py:25
 msgid "Closed"
+msgstr ""
+
+#: .\issues\templates\issues\issue_detail.html:10
+msgid "Issue"
+msgstr ""
+
+#: .\issues\templates\issues\issue_detail.html:14
+msgid "Reported by"
 msgstr ""
 
 #: .\issues\templates\issues\issue_report.html:14
@@ -278,6 +304,10 @@ msgstr ""
 
 #: .\users\views\login.py:22
 msgid "Logged in successfully."
+msgstr ""
+
+#: .\users\views\logout.py:17
+msgid "Logged out successfully."
 msgstr ""
 
 #: .\users\views\registration.py:36

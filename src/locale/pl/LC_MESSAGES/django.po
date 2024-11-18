@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-17 19:21+0100\n"
+"POT-Creation-Date: 2024-11-18 21:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,7 @@ msgid "Name"
 msgstr "Nazwa"
 
 #: .\communities\forms.py:13 .\issues\forms.py:13
+#: .\issues\templates\issues\issue_detail.html:12
 msgid "Description"
 msgstr "Opis"
 
@@ -91,15 +92,39 @@ msgstr "Zarządca:"
 msgid "Residents"
 msgstr "Mieszkańcy"
 
-#: .\communities\templates\communities\building_list.html:12
+#: .\communities\templates\communities\building_list.html:15
+#: .\dashboards\templates\dashboards\dashboard_administrator.html:15
+#: .\dashboards\templates\dashboards\dashboard_property_manager.html:12
+msgid "Buildings"
+msgstr "Budynki"
+
+#: .\communities\templates\communities\building_list.html:17
 msgid "Currently there are no buildings..."
 msgstr "Obecnie nie ma żadnych budynków..."
 
-#: .\communities\templates\communities\building_list.html:19
+#: .\communities\templates\communities\building_list.html:26
 #, fuzzy
 #| msgid "building"
 msgid "Add new building"
 msgstr "budynek"
+
+#: .\communities\views\building_create.py:23
+#, fuzzy
+#| msgid "Logged in successfully."
+msgid "Building created successfully."
+msgstr "Zalogowano pomyślnie."
+
+#: .\dashboards\filters.py:7 .\issues\forms.py:12
+msgid "Title"
+msgstr "Tytuł"
+
+#: .\dashboards\filters.py:8
+msgid "Status"
+msgstr ""
+
+#: .\dashboards\filters.py:9 .\issues\forms.py:15
+msgid "Severity"
+msgstr "Istotność"
 
 #: .\dashboards\templates\dashboards\dashboard_administrator.html:10
 msgid "Administrator"
@@ -108,11 +133,6 @@ msgstr "Administrator"
 #: .\dashboards\templates\dashboards\dashboard_administrator.html:12
 msgid "Create building"
 msgstr "Stwórz budynek"
-
-#: .\dashboards\templates\dashboards\dashboard_administrator.html:15
-#: .\dashboards\templates\dashboards\dashboard_property_manager.html:12
-msgid "Buildings"
-msgstr "Budynki"
 
 #: .\dashboards\templates\dashboards\dashboard_administrator.html:19
 msgid "Invite new property manager"
@@ -126,19 +146,19 @@ msgstr "Zgłoszone problemy"
 msgid "Invite Resident"
 msgstr "Zaproś mieszkańca"
 
-#: .\issues\forms.py:12
-msgid "Title"
-msgstr "Tytuł"
+#: .\dashboards\templates\dashboards\dashboard_resident.html:17
+msgid "Search"
+msgstr ""
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:26
+msgid "No entries to display."
+msgstr ""
 
 #: .\issues\forms.py:14
 msgid "Location"
 msgstr "Miejsce"
 
-#: .\issues\forms.py:15
-msgid "Severity"
-msgstr "Istotność"
-
-#: .\issues\forms.py:16
+#: .\issues\forms.py:16 .\issues\templates\issues\issue_detail.html:16
 msgid "Photo"
 msgstr "Zdjęcie"
 
@@ -181,6 +201,16 @@ msgstr "Rozwiązana"
 #: .\issues\models.py:25
 msgid "Closed"
 msgstr "Zamknięta"
+
+#: .\issues\templates\issues\issue_detail.html:10
+msgid "Issue"
+msgstr ""
+
+#: .\issues\templates\issues\issue_detail.html:14
+#, fuzzy
+#| msgid "Report"
+msgid "Reported by"
+msgstr "Zgłoś"
 
 #: .\issues\templates\issues\issue_report.html:14
 msgid "Report a fault"
@@ -286,6 +316,12 @@ msgstr "Twoje dane logowania są niepoprawne."
 
 #: .\users\views\login.py:22
 msgid "Logged in successfully."
+msgstr "Zalogowano pomyślnie."
+
+#: .\users\views\logout.py:17
+#, fuzzy
+#| msgid "Logged in successfully."
+msgid "Logged out successfully."
 msgstr "Zalogowano pomyślnie."
 
 #: .\users\views\registration.py:36

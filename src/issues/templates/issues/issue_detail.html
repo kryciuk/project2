@@ -14,8 +14,12 @@
         <strong>{% trans "Reported by" %}:</strong><a>{{ issue.reported_by }}</a>
         <br>
         <strong>{% trans "Photo" %}:</strong>
-        <a href="{{ issue.get_photo_url }}" target="_blank">
-            <img src="{{ issue.photo }}" alt="CLICK">
-        </a>
+        {% if issue.photo %}
+            <a href="{{ issue.get_photo_url }}" target="_blank">
+                <button class="btn btn-outline-secondary">CLICK</button>
+            </a>
+        {% else %}
+            <a>---</a>
+        {% endif %}
     </div>
 {% endblock content %}
