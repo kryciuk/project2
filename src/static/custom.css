@@ -52,5 +52,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column; /* Ustawienie w kolumnie */
+            flex-direction: column;
         }
+
+ .btn-outline-dark {
+  color: #343a40;
+  border-color: #343a40;
+  width: 100%;
+}
