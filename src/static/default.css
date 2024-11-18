@@ -3273,7 +3273,6 @@ fieldset:disabled a.btn {
 .btn-outline-dark {
   color: #343a40;
   border-color: #343a40;
-  width: 100%;
 }
 
 .btn-outline-dark:hover {
@@ -11687,7 +11686,7 @@ pre .code {
 }
 
 .section {
-  padding: 5px 5px;
+  padding: 10px 10px;
 }
 
 .section:nth-child(odd) {
@@ -11705,4 +11704,54 @@ pre .code {
 .section.bg-overlay {
   background: #2C3E50;
   color: #fff;
+}
+
+
+.form-title-custom {
+    font-size: 2em;
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 8px;
+    display: inline-block;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #ffffff;
+    font-family: inherit;
+}
+
+select:focus {
+    border-color: #fbd5d5;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(240, 97, 97, 0.25);
+}
+
+.button-container {
+    text-align: center;  /* Center the button horizontally */
+    margin-top: 20px;  /* Optional: Add some space above the button */
+}
+
+.asteriskField {display: none; }
+
+.btn-special {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 2px solid #007bff;
+    background-color: white;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.btn-special:hover {
+    background-color: #007bff;
+    color: white;
 }
