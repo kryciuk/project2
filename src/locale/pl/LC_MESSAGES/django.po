@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-18 21:10+0100\n"
+"POT-Creation-Date: 2024-11-18 21:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,17 +92,17 @@ msgstr "Zarządca:"
 msgid "Residents"
 msgstr "Mieszkańcy"
 
-#: .\communities\templates\communities\building_list.html:15
+#: .\communities\templates\communities\building_list.html:12
 #: .\dashboards\templates\dashboards\dashboard_administrator.html:15
 #: .\dashboards\templates\dashboards\dashboard_property_manager.html:12
 msgid "Buildings"
 msgstr "Budynki"
 
-#: .\communities\templates\communities\building_list.html:17
+#: .\communities\templates\communities\building_list.html:14
 msgid "Currently there are no buildings..."
 msgstr "Obecnie nie ma żadnych budynków..."
 
-#: .\communities\templates\communities\building_list.html:26
+#: .\communities\templates\communities\building_list.html:24
 #, fuzzy
 #| msgid "building"
 msgid "Add new building"
@@ -114,15 +114,15 @@ msgstr "budynek"
 msgid "Building created successfully."
 msgstr "Zalogowano pomyślnie."
 
-#: .\dashboards\filters.py:7 .\issues\forms.py:12
+#: .\dashboards\filters.py:8 .\issues\forms.py:12
 msgid "Title"
 msgstr "Tytuł"
 
-#: .\dashboards\filters.py:8
+#: .\dashboards\filters.py:10
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
-#: .\dashboards\filters.py:9 .\issues\forms.py:15
+#: .\dashboards\filters.py:13 .\issues\forms.py:15
 msgid "Severity"
 msgstr "Istotność"
 
@@ -146,13 +146,13 @@ msgstr "Zgłoszone problemy"
 msgid "Invite Resident"
 msgstr "Zaproś mieszkańca"
 
-#: .\dashboards\templates\dashboards\dashboard_resident.html:17
+#: .\dashboards\templates\dashboards\dashboard_resident.html:14
 msgid "Search"
-msgstr ""
+msgstr "Szukaj"
 
-#: .\dashboards\templates\dashboards\dashboard_resident.html:26
+#: .\dashboards\templates\dashboards\dashboard_resident.html:23
 msgid "No entries to display."
-msgstr ""
+msgstr "Brak zgłoszeń do wyświetlenia."
 
 #: .\issues\forms.py:14
 msgid "Location"
@@ -204,7 +204,7 @@ msgstr "Zamknięta"
 
 #: .\issues\templates\issues\issue_detail.html:10
 msgid "Issue"
-msgstr ""
+msgstr "Zgłoszenie"
 
 #: .\issues\templates\issues\issue_detail.html:14
 #, fuzzy
@@ -212,11 +212,11 @@ msgstr ""
 msgid "Reported by"
 msgstr "Zgłoś"
 
-#: .\issues\templates\issues\issue_report.html:14
+#: .\issues\templates\issues\issue_report.html:11
 msgid "Report a fault"
 msgstr "Zgłoś usterkę"
 
-#: .\issues\templates\issues\issue_report.html:19
+#: .\issues\templates\issues\issue_report.html:16
 msgid "Report"
 msgstr "Zgłoś"
 
