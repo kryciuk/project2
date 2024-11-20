@@ -1,0 +1,316 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-18 21:53+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\communities\forms.py:12
+msgid "Name"
+msgstr ""
+
+#: .\communities\forms.py:13 .\issues\forms.py:13
+#: .\issues\templates\issues\issue_detail.html:12
+msgid "Description"
+msgstr ""
+
+#: .\communities\forms.py:14
+msgid "City"
+msgstr ""
+
+#: .\communities\forms.py:15
+msgid "Postal code"
+msgstr ""
+
+#: .\communities\forms.py:16
+msgid "Street"
+msgstr ""
+
+#: .\communities\forms.py:17
+msgid "Building number"
+msgstr ""
+
+#: .\communities\forms.py:18
+#: .\dashboards\templates\dashboards\dashboard_property_manager.html:10
+msgid "Property Manager"
+msgstr ""
+
+#: .\communities\templates\communities\building_create.html:13
+msgid "Add new"
+msgstr ""
+
+#: .\communities\templates\communities\building_create.html:15
+#: .\communities\templates\communities\building_create.html:26
+#: .\communities\templates\communities\building_detail.html:63
+msgid "Edit"
+msgstr ""
+
+#: .\communities\templates\communities\building_create.html:17
+msgid "building"
+msgstr ""
+
+#: .\communities\templates\communities\building_create.html:24
+msgid "Create"
+msgstr ""
+
+#: .\communities\templates\communities\building_detail.html:17
+msgid "Building description:"
+msgstr ""
+
+#: .\communities\templates\communities\building_detail.html:25
+msgid "City:"
+msgstr ""
+
+#: .\communities\templates\communities\building_detail.html:33
+msgid "Postal code:"
+msgstr ""
+
+#: .\communities\templates\communities\building_detail.html:41
+msgid "Address:"
+msgstr ""
+
+#: .\communities\templates\communities\building_detail.html:54
+msgid "Manager:"
+msgstr ""
+
+#: .\communities\templates\communities\building_detail.html:67
+msgid "Residents"
+msgstr ""
+
+#: .\communities\templates\communities\building_list.html:12
+#: .\dashboards\templates\dashboards\dashboard_administrator.html:15
+#: .\dashboards\templates\dashboards\dashboard_property_manager.html:12
+msgid "Buildings"
+msgstr ""
+
+#: .\communities\templates\communities\building_list.html:14
+msgid "Currently there are no buildings..."
+msgstr ""
+
+#: .\communities\templates\communities\building_list.html:24
+msgid "Add new building"
+msgstr ""
+
+#: .\communities\views\building_create.py:23
+msgid "Building created successfully."
+msgstr ""
+
+#: .\dashboards\filters.py:8 .\issues\forms.py:12
+msgid "Title"
+msgstr ""
+
+#: .\dashboards\filters.py:10
+msgid "Status"
+msgstr ""
+
+#: .\dashboards\filters.py:13 .\issues\forms.py:15
+msgid "Severity"
+msgstr ""
+
+#: .\dashboards\templates\dashboards\dashboard_administrator.html:10
+msgid "Administrator"
+msgstr ""
+
+#: .\dashboards\templates\dashboards\dashboard_administrator.html:12
+msgid "Create building"
+msgstr ""
+
+#: .\dashboards\templates\dashboards\dashboard_administrator.html:19
+msgid "Invite new property manager"
+msgstr ""
+
+#: .\dashboards\templates\dashboards\dashboard_property_manager.html:15
+msgid "Reported Issues"
+msgstr ""
+
+#: .\dashboards\templates\dashboards\dashboard_property_manager.html:17
+msgid "Invite Resident"
+msgstr ""
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:14
+msgid "Search"
+msgstr ""
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:23
+msgid "No entries to display."
+msgstr ""
+
+#: .\issues\forms.py:14
+msgid "Location"
+msgstr ""
+
+#: .\issues\forms.py:16 .\issues\templates\issues\issue_detail.html:16
+msgid "Photo"
+msgstr ""
+
+#: .\issues\models.py:12
+msgid "Common Area"
+msgstr ""
+
+#: .\issues\models.py:13
+msgid "Apartment"
+msgstr ""
+
+#: .\issues\models.py:14
+msgid "Garage"
+msgstr ""
+
+#: .\issues\models.py:17
+msgid "Low"
+msgstr ""
+
+#: .\issues\models.py:18
+msgid "Medium"
+msgstr ""
+
+#: .\issues\models.py:19
+msgid "High"
+msgstr ""
+
+#: .\issues\models.py:22
+msgid "Open"
+msgstr ""
+
+#: .\issues\models.py:23
+msgid "In progress"
+msgstr ""
+
+#: .\issues\models.py:24
+msgid "Resolved"
+msgstr ""
+
+#: .\issues\models.py:25
+msgid "Closed"
+msgstr ""
+
+#: .\issues\templates\issues\issue_detail.html:10
+msgid "Issue"
+msgstr ""
+
+#: .\issues\templates\issues\issue_detail.html:14
+msgid "Reported by"
+msgstr ""
+
+#: .\issues\templates\issues\issue_report.html:11
+msgid "Report a fault"
+msgstr ""
+
+#: .\issues\templates\issues\issue_report.html:16
+msgid "Report"
+msgstr ""
+
+#: .\issues\views\issue_report.py:27
+#, python-brace-format
+msgid ""
+"New issue in building {form.instance.building}. Level: {form.instance."
+"severity}"
+msgstr ""
+
+#: .\issues\views\issue_report.py:28
+#, python-brace-format
+msgid ""
+"New issue in building {form.instance.building}. Description: {form.instance."
+"description}"
+msgstr ""
+
+#: .\users\forms.py:12 .\users\forms.py:19 .\users\forms.py:37
+msgid "Email"
+msgstr ""
+
+#: .\users\forms.py:12
+msgid "Building"
+msgstr ""
+
+#: .\users\forms.py:34
+msgid "Username"
+msgstr ""
+
+#: .\users\forms.py:35
+msgid "First name"
+msgstr ""
+
+#: .\users\forms.py:36
+msgid "Last name"
+msgstr ""
+
+#: .\users\forms.py:41
+msgid "User with this username already exists!"
+msgstr ""
+
+#: .\users\forms.py:42
+msgid "User with this email already exists!"
+msgstr ""
+
+#: .\users\forms.py:43
+msgid "The two password fields didn't match."
+msgstr ""
+
+#: .\users\forms.py:44 .\users\forms.py:45 .\users\forms.py:46
+msgid "This field is required."
+msgstr ""
+
+#: .\users\templates\users\invite_send.html:12
+msgid "Invite"
+msgstr ""
+
+#: .\users\templates\users\invite_send.html:14
+msgid "resident"
+msgstr ""
+
+#: .\users\templates\users\invite_send.html:16
+msgid "property manager"
+msgstr ""
+
+#: .\users\templates\users\invite_send.html:18
+msgid "to this application"
+msgstr ""
+
+#: .\users\templates\users\invite_send.html:23
+msgid "Send Invitation"
+msgstr ""
+
+#: .\users\templates\users\login.html:10
+msgid "Login"
+msgstr ""
+
+#: .\users\templates\users\login.html:15
+msgid "Log in"
+msgstr ""
+
+#: .\users\templates\users\register.html:10
+msgid "Registration"
+msgstr ""
+
+#: .\users\templates\users\register.html:18
+msgid "Register"
+msgstr ""
+
+#: .\users\views\login.py:18
+msgid "Your login details are incorrect."
+msgstr ""
+
+#: .\users\views\login.py:22
+msgid "Logged in successfully."
+msgstr ""
+
+#: .\users\views\logout.py:17
+msgid "Logged out successfully."
+msgstr ""
+
+#: .\users\views\registration.py:36
+#, python-brace-format
+msgid "Account created successfully for {self.request.user.username}."
+msgstr ""

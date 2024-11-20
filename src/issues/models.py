@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from communities.models import Building
 from users.models import CustomUser
@@ -8,20 +9,20 @@ from users.models import CustomUser
 
 class Issue(models.Model):
     class IssuePlaceChoices(models.TextChoices):
-        COMMON_AREA = "Część wspólna"
-        APARTMENT = "Mieszkanie"
-        GARAGE = "Garaż"
+        COMMON_AREA = ("Common Area", _("Common Area"))
+        APARTMENT = ("Apartment", _("Apartment"))
+        GARAGE = ("Garage", _("Garage"))
 
     class IssueSeverityChoices(models.TextChoices):
-        LOW = "Niska"
-        MEDIUM = "Średnia"
-        HIGH = "Wysoka"
+        LOW = ("Low", _("Low"))
+        MEDIUM = ("Medium", _("Medium"))
+        HIGH = ("High", _("High"))
 
     class IssueStatusChoices(models.TextChoices):
-        OPEN = "Otwarta"
-        IN_PROGRESS = "W trakcie"
-        RESOLVED = "Rozwiązana"
-        CLOSED = "Zamknięta"
+        OPEN = ("Open", _("Open"))
+        IN_PROGRESS = ("In progress", _("In progress"))
+        RESOLVED = ("Resolved", _("Resolved"))
+        CLOSED = ("Closed", _("Closed"))
 
     title = models.CharField(max_length=30)
     description = models.TextField()
@@ -29,6 +30,7 @@ class Issue(models.Model):
     place = models.CharField(choices=IssuePlaceChoices.choices)
     severity = models.CharField(choices=IssueSeverityChoices.choices)
     status = models.CharField(choices=IssueStatusChoices.choices)
+    photo = models.ImageField(upload_to="media/issues", null=True, blank=True)
     reported_by = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, related_name="reported_issues")
     assigned_to = models.ForeignKey(
         CustomUser, on_delete=models.SET_NULL, null=True, blank=True, related_name="assigned_issues"
@@ -42,3 +44,6 @@ class Issue(models.Model):
 
     def get_absolute_url(self):
         return reverse("building-create")
+
+    def get_photo_url(self):
+        return self.photo.url

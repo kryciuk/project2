@@ -45,7 +45,9 @@ jobs:
     - name: Run Tests
       run: |
         cd src
-        poetry run python manage.py test
+        poetry run coverage run manage.py test
+        poetry run coverage report
+        poetry run coverage xml
       env:
         DB_NAME: ${{ vars.DB_NAME }}
         DB_USER: ${{ vars.DB_USER }}
@@ -54,6 +56,10 @@ jobs:
         DB_HOST: ${{ secrets.DB_HOST }}
         SMTP_HOST: ${{ vars.SMTP_HOST }}
         SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+    - name: Upload coverage report
+      uses: codecov/codecov-action@v4
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     - name: Run Bandit
       run: |
         poetry run bandit -c pyproject.toml -r .

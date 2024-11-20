@@ -6,16 +6,10 @@
 {% endblock title %}
 {% block content %}
     <div class="container">
-        <div class="card card-body">
-            <article class="media content-section">
-                <div class="media-body">
-                    <div class="article-metadata">
-                        {% for issue in issues %}
-                            <a href="{% url "issue-detail" issue.id %}">{{ issue }}</a>
-                        {% endfor %}
-                    </div>
-                </div>
-            </article>
-        </div>
+        {% for issue in issues %}
+            <div>
+                <a href="{% url "issue-detail" issue.id %}">{{ issue }}</a>
+            </div>
+        {% endfor %}
     </div>
 {% endblock content %}

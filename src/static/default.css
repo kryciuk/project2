@@ -3080,6 +3080,10 @@ fieldset:disabled a.btn {
 .btn-outline-secondary {
   color: #6c757d;
   border-color: #6c757d;
+  border-width: 1px;
+  padding: 4px 8px;
+  font-size: 14px;
+  line-height: 1.2;
 }
 
 .btn-outline-secondary:hover {
@@ -3144,6 +3148,7 @@ fieldset:disabled a.btn {
 .btn-outline-info {
   color: #17a2b8;
   border-color: #17a2b8;
+  width: 100%;
 }
 
 .btn-outline-info:hover {
@@ -3272,6 +3277,7 @@ fieldset:disabled a.btn {
 .btn-outline-dark {
   color: #343a40;
   border-color: #343a40;
+  width: 100%;
 }
 
 .btn-outline-dark:hover {
@@ -11685,7 +11691,7 @@ pre .code {
 }
 
 .section {
-  padding: 60px 10px;
+  padding: 15px 15px;
 }
 
 .section:nth-child(odd) {
@@ -11736,3 +11742,77 @@ select:focus {
 }
 
 .asteriskField {display: none; }
+
+.btn-special {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 2px solid #007bff;
+    background-color: white;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.btn-special:hover {
+    background-color: #007bff;
+    color: white;
+}
+ input[type="file"] {
+            display: block;
+            margin: 0 auto;
+            font-family: inherit;
+            font-size: 1rem;
+            color: #6c757d;
+            background-color: #ffffff;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 4px 8px;
+            cursor: pointer;
+            text-align: center;
+            height: auto;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        input[type="file"]::file-selector-button {
+            font-family: inherit;
+            font-size: 1rem;
+            color: #6c757d;
+            background-color: #ffffff;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 4px 10px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            background-color: #e9ecef;
+            border-color: #adb5bd;
+        }
+
+        input[type="file"]::-webkit-file-upload-button {
+            font-family: inherit;
+            font-size: 1rem;
+            color: #6c757d;
+            background-color: #ffffff;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 4px 10px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        input[type="file"]::-webkit-file-upload-button:hover {
+            background-color: #e9ecef;
+            border-color: #adb5bd;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }

@@ -1,19 +1,28 @@
 {% extends "landing/base.html" %}
+{% load auth_extras %}
+{% load static %}
+{% load i18n %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% block title %}
     {{ title }}
 {% endblock title %}
 {% block content %}
-    <article class="media content-section">
-        <div class="media-body">
-            <div class="article-metadata">
-                {% for building in buildings %}
-                    <div class="container">
-                        <a href="{% url "building-detail" building.id %}">{{ building }}</a>
-                    </div>
-                {% endfor %}
+    <div class="container">
+        <h2 class="form-title-custom">{% trans "Buildings" %}</h2>
+        {% if not buildings %}
+            <a class="align-center">{% trans "Currently there are no buildings..." %}</a>
+        {% endif %}
+        {% for building in buildings %}
+            <div class="mt-2">
+                <a class="btn btn-outline-dark"
+                   href="{% url "building-detail" building.id %}">{{ building }}</a>
             </div>
-        </div>
-    </article>
+        {% endfor %}
+        {% if request.user|has_group:"Propety Manager" or request.user.is_superuser %}
+            <div class="mt-5">
+                <a class="btn btn-outline-info" href="{% url 'building-create' %}">{% trans "Add new building" %}</a>
+            </div>
+        {% endif %}
+    </div>
 {% endblock content %}

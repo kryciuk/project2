@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django.utils.translation import gettext_lazy as _
 
 from communities.models import Building
 
@@ -8,11 +9,11 @@ class BuildingForm(ModelForm):
         model = Building
         fields = "__all__"
         labels = {
-            "name": "Nazywa",
-            "description": "Opis",
-            "city": "Miasto",
-            "postal_code": "Kod pocztowy",
-            "street": "Ulica",
-            "street_number": "Numer budynku",
-            "manager": "Zarządca",
+            "name": _("Name"),
+            "description": _("Description"),
+            "city": _("City"),
+            "postal_code": _("Postal code"),
+            "street": _("Street"),
+            "street_number": _("Building number"),
+            "manager": _("Property Manager"),
         }

@@ -1,5 +1,6 @@
 from django.core.mail import send_mail
 from django.urls import reverse
+from django.utils.translation import gettext as _
 from django.views.generic import FormView
 
 from communities.models import Building
@@ -23,8 +24,8 @@ class IssueReportView(FormView):
         form.instance.save()
 
         # sending email to property manager
-        subject = f"Nowe zgłoszenie w budynku {form.instance.building}. Level: {form.instance.severity}"
-        message = f"Nowa zgłoszenie w budynku {form.instance.building}. Opis: {form.instance.description}"
+        subject = _(f"New issue in building {form.instance.building}. Level: {form.instance.severity}")
+        message = _(f"New issue in building {form.instance.building}. Description: {form.instance.description}")
         from_email = "default"
         if form.instance.building.manager is None:
             recipient_list = [user.email for user in CustomUser.objects.filter(groups__name="Administrator")]
@@ -35,4 +36,4 @@ class IssueReportView(FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("dashboard-property-manager")
+        return reverse("dashboard-resident")

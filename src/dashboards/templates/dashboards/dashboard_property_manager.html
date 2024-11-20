@@ -1,4 +1,5 @@
 {% extends "landing/base.html" %}
+{% load i18n %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% block title %}
@@ -6,11 +7,15 @@
 {% endblock title %}
 {% block content %}
     <div class="container">
-        <h1>Manage</h1>
-        <a class="btn-info-outline" href="{% url 'invite-resident-send' %}">Send Invite</a>
-        <br>
-        <a class="btn-info-outline" href="{% url 'building-list' %}">Buildings</a>
-        <br>
-        <a class="btn-info-outline" href="{% url 'issue-list' %}">Reported Issues</a>
+        <h2 class="form-title-custom">{% trans "Property Manager" %}</h2>
+        <div class="mt-2">
+            <a class="btn btn-outline-info" href="{% url 'building-list' %}">{% trans "Buildings" %}</a>
+        </div>
+        <div class="mt-2">
+            <a class="btn btn-outline-info" href="{% url 'issue-list' %}">{% trans "Reported Issues" %}</a>
+            <div class="mt-2">
+                <a class="btn btn-outline-info" href="{% url 'invite-resident-send' %}">{% trans "Invite Resident" %}</a>
+            </div>
+        </div>
     </div>
 {% endblock content %}

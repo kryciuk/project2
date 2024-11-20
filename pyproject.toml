@@ -17,6 +17,10 @@ django-allauth = "^64.0.0"
 django-qr-code = "^4.1.0"
 qrcode = "^7.4.2"
 pillow = "^10.4.0"
+coverage = "^7.6.1"
+python-gettext = "^5.0"
+django-session-timeout = "^0.1.0"
+django-filter = "^24.3"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.8.0"
