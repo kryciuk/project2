@@ -8,15 +8,15 @@
 {% endblock title %}
 {% block content %}
     <div class="container">
-        <strong>{% trans "Issue" %}: </strong><a>{{ issue.title }}</a>
+        <strong>{% trans "Issue" %}:</strong><a>{{ issue.title }}</a>
         <br>
-        <strong>{% trans "Building" %}: </strong><a>{{ issue.building.name }}</a>
+        <strong>{% trans "Building" %}:</strong><a>{{ issue.building.name }}</a>
         <br>
-        <strong>{% trans "Description" %}: </strong><a>{{ issue.description }}</a>
+        <strong>{% trans "Description" %}:</strong><a>{{ issue.description }}</a>
         <br>
-        <strong>{% trans "Reported by" %}: </strong><a>{{ issue.reported_by }}</a>
+        <strong>{% trans "Reported by" %}:</strong><a>{{ issue.reported_by }}</a>
         <br>
-        <strong>{% trans "Photo" %}: </strong>
+        <strong>{% trans "Photo" %}:</strong>
         {% if issue.photo %}
             <a href="{{ issue.get_photo_url }}" target="_blank">
                 <button class="btn btn-outline-secondary">CLICK</button>
@@ -24,8 +24,11 @@
         {% else %}
             <a>---</a>
         {% endif %}
-        <br>
-        <br>
+        <div class="m-3">
+            {% if not comments %}
+                <a class="align-center">{% trans "Currently there are no comments..." %}</a>
+            {% endif %}
+        </div>
         {% for comment in comments %}
             <ul>
                 {% if comment.author|has_group:"Property Manager" or comment.author|has_group:"Administrator" %}
@@ -53,11 +56,15 @@
                         {% trans "Add comment" %}
                     {% endif %}
                 </strong>
-                <div class="card">
+                <div>
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form | crispy }}
-                        <button class="btn btn-outline-info" type="submit">{% trans "Comment" %}</button>
+                        {% if request.user|has_group:"Property Manager" or request.user|has_group:"Administrator" %}
+                            <button class="btn btn-outline-info" type="submit">{% trans "Update" %}</button>
+                        {% else %}
+                            <button class="btn btn-outline-info" type="submit">{% trans "Comment" %}</button>
+                        {% endif %}
                     </form>
                 </div>
             </div>

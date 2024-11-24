@@ -41,7 +41,7 @@ class IssueDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["comments"] = Comment.objects.filter(issue=self.object)
+        context["comments"] = Comment.objects.filter(issue=self.object).order_by("date")
         context["form"] = CommentForm()
         return context
 
