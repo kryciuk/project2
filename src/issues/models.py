@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -47,3 +48,14 @@ class Issue(models.Model):
 
     def get_photo_url(self):
         return self.photo.url
+
+    def send_email(self):
+        subject = _(f"New issue in building {self.building.name}. Level: {self.severity}")
+        message = _(f"New issue in building {self.building.name}. Description: {self.description}")
+        from_email = "default"
+        if self.building.manager is None:
+            recipient_list = [user.email for user in CustomUser.objects.filter(groups__name="Administrator")]
+        else:
+            recipient_list = [self.building.manager.email]
+        send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+        return "None"
