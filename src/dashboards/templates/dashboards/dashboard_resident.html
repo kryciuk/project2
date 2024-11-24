@@ -7,7 +7,22 @@
     {{ title }}
 {% endblock title %}
 {% block content %}
-    <div class="section">
+    <div class="container">
+        <h2 class="form-title-custom">{% trans "Issues" %}</h2>
+        {% for issue in issues %}
+            <div class="mt-2">
+                <a class="btn btn-outline-dark" href="{% url 'issue-detail' issue.pk %}">{{ issue }}</a>
+            </div>
+        {% empty %}
+            <div class="text-center">{% trans "No entries to display." %}</div>
+        {% endfor %}
+        <div class="mt-4">
+            <a class="btn btn-outline-info"
+               href="{% url 'issue-report' building_id %}">{% trans "Report Issue" %}</a>
+        </div>
+    </div>
+    <div class="container">
+        <h2 class="form-title-custom">{% trans "Search" %}</h2>
         <form method="get" action="{% url 'dashboard-resident' %}">
             {{ form|crispy }}
             <div class="centered">
@@ -15,11 +30,4 @@
             </div>
         </form>
     </div>
-    {% for issue in issues %}
-        <div class="container">
-            <a class="text-center" href="{% url 'issue-detail' issue.pk %}">{{ issue }}</a>
-        </div>
-    {% empty %}
-        <div class="text-center">{% trans "No entries to display." %}</div>
-    {% endfor %}
 {% endblock content %}

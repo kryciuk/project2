@@ -22,5 +22,6 @@ class ResidentDashboardView(ListView, FilterView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Project2 - Resident"
+        context["building_id"] = self.request.user.building.id
         context["form"] = self.filterset.form
         return context
