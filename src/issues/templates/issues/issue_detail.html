@@ -1,5 +1,6 @@
 {% extends "landing/base.html" %}
 {% load i18n %}
+{% load auth_extras %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% block title %}
@@ -8,6 +9,8 @@
 {% block content %}
     <div class="container">
         <strong>{% trans "Issue" %}: </strong><a>{{ issue.title }}</a>
+        <br>
+        <strong>{% trans "Building" %}: </strong><a>{{ issue.building.name }}</a>
         <br>
         <strong>{% trans "Description" %}: </strong><a>{{ issue.description }}</a>
         <br>
@@ -21,5 +24,42 @@
         {% else %}
             <a>---</a>
         {% endif %}
-    </div>
-{% endblock content %}
+        <br>
+        <br>
+        {% for comment in comments %}
+            <ul>
+                {% if comment.author|has_group:"Property Manager" or comment.author|has_group:"Administrator" %}
+                    <div class="card-update">
+                    {% else %}
+                        <div class="card">
+                        {% endif %}
+                        <strong>
+                            {% if comment.author|has_group:"Property Manager" or comment.author|has_group:"Administrator" %}
+                                {% trans "Update" %}:
+                            {% else %}
+                                {% trans "Comment" %}:
+                            {% endif %}
+                        </strong>
+                        <a>{{ comment.comment }}</a>
+                        <strong>{% trans "Author" %}:</strong><a>{{ comment.author }}</a>
+                    </div>
+                </ul>
+            {% endfor %}
+            <div>
+                <strong>
+                    {% if request.user|has_group:"Property Manager" or request.user|has_group:"Administrator" %}
+                        {% trans "Add update" %}
+                    {% else %}
+                        {% trans "Add comment" %}
+                    {% endif %}
+                </strong>
+                <div class="card">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                        <button class="btn btn-outline-info" type="submit">{% trans "Comment" %}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endblock content %}

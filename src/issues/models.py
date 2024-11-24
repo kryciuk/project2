@@ -38,7 +38,6 @@ class Issue(models.Model):
     )
     date_reported = models.DateTimeField(default=timezone.now)
     date_resolved = models.DateTimeField(null=True, blank=True)
-    update_info = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.title}"
@@ -59,3 +58,10 @@ class Issue(models.Model):
             recipient_list = [self.building.manager.email]
         send_mail(subject, message, from_email, recipient_list, fail_silently=False)
         return "None"
+
+
+class Comment(models.Model):
+    comment = models.TextField()
+    author = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
+    date = models.DateTimeField(default=timezone.now)
+    issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
