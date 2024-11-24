@@ -3151,6 +3151,14 @@ fieldset:disabled a.btn {
   width: 100%;
 }
 
+.btn-outline-info-second {
+  color: #17a2b8;
+  border-color: #17a2b8;
+  width: 88%;
+  display: block;
+  margin: 0 auto;
+}
+
 .btn-outline-info:hover {
   color: #fff;
   background-color: #17a2b8;
