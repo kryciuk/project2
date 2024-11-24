@@ -7,13 +7,13 @@
 {% endblock title %}
 {% block content %}
     <div class="container">
-        <strong>{% trans "Issue" %}:</strong><a>{{ issue.title }}</a>
+        <strong>{% trans "Issue" %}: </strong><a>{{ issue.title }}</a>
         <br>
-        <strong>{% trans "Description" %}:</strong><a>{{ issue.description }}</a>
+        <strong>{% trans "Description" %}: </strong><a>{{ issue.description }}</a>
         <br>
-        <strong>{% trans "Reported by" %}:</strong><a>{{ issue.reported_by }}</a>
+        <strong>{% trans "Reported by" %}: </strong><a>{{ issue.reported_by }}</a>
         <br>
-        <strong>{% trans "Photo" %}:</strong>
+        <strong>{% trans "Photo" %}: </strong>
         {% if issue.photo %}
             <a href="{{ issue.get_photo_url }}" target="_blank">
                 <button class="btn btn-outline-secondary">CLICK</button>
