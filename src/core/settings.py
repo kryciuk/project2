@@ -73,6 +73,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django_session_timeout.middleware.SessionTimeoutMiddleware",
+    "core.middleware.ClearSessionOnViewChangeMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"

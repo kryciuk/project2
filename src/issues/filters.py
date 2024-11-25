@@ -13,7 +13,7 @@ class IssuePropertyManagerFilter(django_filters.FilterSet):
     severity = django_filters.ChoiceFilter(
         field_name="severity", choices=Issue.IssueSeverityChoices.choices, label=_("Severity")
     )
-    building = django_filters.ModelChoiceFilter(queryset=Building.objects.all(), label=_("building"))
+    building = django_filters.ModelChoiceFilter(queryset=Building.objects.all(), label=_("Building"))
 
     class Meta:
         model = Issue

@@ -20,7 +20,7 @@
             </div>
         {% endfor %}
         {% if request.user|has_group:"Propety Manager" or request.user.is_superuser %}
-            <div class="mt-5">
+            <div class="mt-4">
                 <a class="btn btn-outline-info" href="{% url 'building-create' %}">{% trans "Add new building" %}</a>
             </div>
         {% endif %}
