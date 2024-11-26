@@ -11843,3 +11843,13 @@ select:focus {
             align-items: center;
             flex-direction: column;
         }
+
+.small-font {
+    font-size: 0.75rem;
+}
+
+.text-break {
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+}

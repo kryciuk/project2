@@ -12,19 +12,26 @@
                     <table class="table table-submit">
                         <thead>
                             <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
+                                <th class="small-font">First Name</th>
+                                <th class="small-font">Last Name</th>
+                                <th class="small-font">Phone</th>
+                                <th class="small-font">Email</th>
+                                <th class="small-font">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for resident in residents %}
                                 <tr>
-                                    <td>{{ resident.first_name }}</td>
-                                    <td>{{ resident.last_name }}</td>
-                                    <td>{{ resident.telephone }}</td>
-                                    <td>{{ resident.email }}</td>
+                                    <td class="text-break small-font">{{ resident.first_name }}</td>
+                                    <td class="text-break small-font">{{ resident.last_name }}</td>
+                                    <td class="text-break small-font">{{ resident.telephone }}</td>
+                                    <td class="text-break small-font">{{ resident.email }}</td>
+                                    <td class="text-break small-font">
+                                        <form method="post" action="{% url 'resident-delete' resident.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>
