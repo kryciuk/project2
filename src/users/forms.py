@@ -20,6 +20,8 @@ class SendPropertyManagerInvitationForm(forms.ModelForm):
 
 
 class CreateUserForm(UserCreationForm):
+    usable_password = None
+
     class Meta:
         model = CustomUser
         fields = [
