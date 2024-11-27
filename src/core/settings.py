@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "allauth",
     "invitations",
     "qr_code",
+    "phonenumber_field",
 ]
 
 INSTALLED_EXTENSIONS = [

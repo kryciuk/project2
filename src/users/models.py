@@ -1,12 +1,14 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from invitations.models import Invitation
+from phonenumber_field.modelfields import PhoneNumberField
 
 from communities.models import Building
 
 
 class CustomUser(AbstractUser):
     building = models.ForeignKey(Building, on_delete=models.CASCADE, null=True, blank=True, related_name="residents")
+    phone_number = PhoneNumberField(region="PL", blank=True)
 
 
 class CustomInvitation(Invitation):

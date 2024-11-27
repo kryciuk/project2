@@ -24,19 +24,13 @@ class CreateUserForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = [
-            "username",
-            "first_name",
-            "last_name",
-            "email",
-            "password1",
-            "password2",
-        ]
+        fields = ["username", "first_name", "last_name", "email", "password1", "password2", "phone_number"]
         labels = {
             "username": _("Username"),
             "first_name": _("First name"),
             "last_name": _("Last name"),
             "email": _("Email"),
+            "phone_number": _("Phone number"),
         }
 
         error_messages = {
