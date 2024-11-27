@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.views.generic import ListView
 from django_filters.views import FilterView
 
@@ -13,8 +14,11 @@ class ResidentDashboardView(ListView, FilterView):
     def get_queryset(self):
         queryset = Issue.objects.filter(
             building=self.request.user.building,
-            status__in=[Issue.IssueStatusChoices.OPEN, Issue.IssueStatusChoices.IN_PROGRESS],
-        ).order_by("-date_reported")
+            status__in=[Issue.IssueStatusChoices.OPEN],
+        ).order_by("-date_reported") | Issue.objects.filter(
+            status=Issue.IssueStatusChoices.CLOSED, date_resolved__gte=timezone.now() - timezone.timedelta(days=14)
+        )
+
         self.filterset = IssueFilter(self.request.GET, queryset=queryset)
         return self.filterset.qs
         # return queryset

@@ -21,8 +21,6 @@ class Issue(models.Model):
 
     class IssueStatusChoices(models.TextChoices):
         OPEN = ("Open", _("Open"))
-        IN_PROGRESS = ("In progress", _("In progress"))
-        RESOLVED = ("Resolved", _("Resolved"))
         CLOSED = ("Closed", _("Closed"))
 
     title = models.CharField(max_length=30)
@@ -30,7 +28,7 @@ class Issue(models.Model):
     building = models.ForeignKey(Building, on_delete=models.SET_NULL, null=True)
     place = models.CharField(choices=IssuePlaceChoices.choices)
     severity = models.CharField(choices=IssueSeverityChoices.choices)
-    status = models.CharField(choices=IssueStatusChoices.choices)
+    status = models.CharField(choices=IssueStatusChoices.choices, null=True, blank=True)
     photo = models.ImageField(upload_to="media/issues", null=True, blank=True)
     reported_by = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, related_name="reported_issues")
     assigned_to = models.ForeignKey(

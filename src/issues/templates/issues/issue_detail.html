@@ -16,6 +16,8 @@
         <br>
         <strong>{% trans "Reported by" %}: </strong><a>{{ issue.reported_by }}</a>
         <br>
+        <strong>{% trans "Status" %}: </strong><a>{{ issue.status }}</a>
+        <br>
         <strong>{% trans "Photo" %}: </strong>
         {% if issue.photo %}
             <a href="{{ issue.get_photo_url }}" target="_blank">
@@ -66,7 +68,15 @@
                             <button class="btn btn-outline-info" type="submit">{% trans "Comment" %}</button>
                         {% endif %}
                     </form>
+                    {% if request.user|has_group:"Property Manager" or request.user|has_group:"Administrator" or request.user.is_superuser %}
+                        <div class="mt-1">
+                            <form method="post" action="{% url 'issue-close' issue.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-info">{% trans "Close" %}</button>
+                            </form>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
-    {% endblock content %}
+{% endblock content %}

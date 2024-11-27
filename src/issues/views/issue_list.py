@@ -1,9 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils import timezone
 from django.views.generic import ListView
 
 from issues.filters import IssuePropertyManagerFilter
-
-# from core.base import is_member
 from issues.models import Issue
 
 
@@ -14,7 +13,9 @@ class IssueListView(LoginRequiredMixin, ListView):
     filterset_class = IssuePropertyManagerFilter
 
     def get_queryset(self):
-        queryset = Issue.objects.all()
+        queryset = Issue.objects.filter(status=Issue.IssueStatusChoices.OPEN) | Issue.objects.filter(
+            status=Issue.IssueStatusChoices.CLOSED, date_resolved__gte=timezone.now() - timezone.timedelta(days=14)
+        )
         self.filterset = IssuePropertyManagerFilter(self.request.GET, queryset=queryset)
         return self.filterset.qs
 

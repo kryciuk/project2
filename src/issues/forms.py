@@ -17,6 +17,12 @@ class IssueForm(ModelForm):
         }
 
 
+class IssueCloseForm(ModelForm):
+    class Meta:
+        model = Issue
+        fields = ["status", "date_resolved"]
+
+
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
