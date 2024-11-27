@@ -11,7 +11,7 @@
         <h2 class="form-title-custom">{% trans "Issues" %}</h2>
         {% for issue in issues %}
             <div class="mt-2">
-                <a class="btn btn-outline-dark" href="{% url 'issue-detail' issue.pk %}">{{ issue }}</a>
+                <a class="btn btn-outline-dark" href="{% url 'issue-detail' issue.pk %}">{{ issue }} {{ issue.status }}</a>
             </div>
         {% empty %}
             <div class="text-center">{% trans "No entries to display." %}</div>

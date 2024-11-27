@@ -16,7 +16,9 @@ class ResidentDashboardView(ListView, FilterView):
             building=self.request.user.building,
             status__in=[Issue.IssueStatusChoices.OPEN],
         ).order_by("-date_reported") | Issue.objects.filter(
-            status=Issue.IssueStatusChoices.CLOSED, date_resolved__gte=timezone.now() - timezone.timedelta(days=14)
+            building=self.request.user.building,
+            status=Issue.IssueStatusChoices.CLOSED,
+            date_resolved__gte=timezone.now() - timezone.timedelta(days=14),
         )
 
         self.filterset = IssueFilter(self.request.GET, queryset=queryset)
