@@ -13,7 +13,7 @@
         {% endif %}
         {% for issue in issues %}
             <div class="mt-2">
-                <a class="btn btn-outline-dark" href="{% url "issue-detail" issue.id %}">{{ issue }}</a>
+                <a class="btn btn-outline-dark" href="{% url "issue-detail" issue.id %}">{{ issue }} {{ issue.status }}</a>
             </div>
         {% endfor %}
     </div>
