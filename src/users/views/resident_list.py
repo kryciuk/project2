@@ -14,10 +14,3 @@ class ResidentListView(LoginRequiredMixin, ListView):
         building = self.kwargs.get("pk")
         queryset = CustomUser.objects.filter(building_id=building).all()
         return queryset
-        # self.filterset = JobOfferFilter(self.request.GET, queryset=queryset)
-        # return self.filterset.qs
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "Project 2"
-        return context

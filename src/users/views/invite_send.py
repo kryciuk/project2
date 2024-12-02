@@ -8,6 +8,7 @@ from users.models import CustomInvitation
 class InviteResidentSendView(FormView):
     template_name = "users/invite_send.html"
     form_class = SendResidentInvitationForm
+    extra_context = {"title": "Project2", "invite": "invite_resident"}
 
     def form_valid(self, form):
         email_address = form.instance.email
@@ -24,15 +25,11 @@ class InviteResidentSendView(FormView):
             invitation.send_invitation(request=self.request)
         return redirect("dashboard-property-manager")
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["invite"] = "invite_resident"
-        return context
-
 
 class InvitePropertyManagerSendView(FormView):
     template_name = "users/invite_send.html"
     form_class = SendPropertyManagerInvitationForm
+    extra_context = {"title": "Project2", "invite": "invite_property_manager"}
 
     def form_valid(self, form):
         email_address = form.instance.email
@@ -47,8 +44,3 @@ class InvitePropertyManagerSendView(FormView):
             )
             invitation.send_invitation(request=self.request)
         return redirect("dashboard-administrator")
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["invite"] = "invite_property_manager"
-        return context

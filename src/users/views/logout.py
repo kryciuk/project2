@@ -5,10 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class UserLogoutView(LogoutView):
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "Logout"
-        return context
+    extra_context = {"title": "Project2"}
 
     def get_success_url(self):
         return reverse("login")

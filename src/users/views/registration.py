@@ -13,6 +13,7 @@ from users.models import CustomInvitation
 class RegisterView(UserPassesTestMixin, FormView):
     template_name = "users/register.html"
     form_class = CreateUserForm
+    extra_context = {"title": "Project2"}
 
     def handle_no_permission(self):
         return redirect_no_permission(self)
@@ -23,7 +24,6 @@ class RegisterView(UserPassesTestMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         invitation = CustomInvitation.objects.get(key=self.request.session.get("invite_key"))
-        context["title"] = "Project2 - Registration"
         context["building"] = invitation.building
         return context
 

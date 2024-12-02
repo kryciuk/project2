@@ -8,11 +8,7 @@ from core.base import is_member
 
 class UserLoginView(LoginView):
     template_name = "users/login.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "title"
-        return context
+    extra_context = {"title": "Project2"}
 
     def form_invalid(self, form):
         messages.warning(self.request, _("Your login details are incorrect."))

@@ -9,6 +9,7 @@ class ResidentDeleteView(LoginRequiredMixin, DeleteView):
     model = CustomUser
     context_object_name = "resident"
     template_name = "communities/residents/resident_list.html"
+    extra_context = {"title": "Project2"}
 
     def post(self, request, *args, **kwargs):
         invitation = CustomInvitation.objects.filter(email=CustomUser.objects.get(id=kwargs["pk"]).email)
