@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView
 from django.urls.base import reverse
 from django.utils.translation import gettext_lazy as _
 
-from core.base import is_member
+from core.access_controls_utils import is_member
 
 
 class UserLoginView(LoginView):

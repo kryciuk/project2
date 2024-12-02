@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import FormView
 
-from core.base import redirect_no_permission
+from core.access_controls_utils import redirect_no_permission
 from users.forms import CreateUserForm
 from users.models import CustomInvitation
 
