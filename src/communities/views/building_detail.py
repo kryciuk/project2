@@ -14,15 +14,12 @@ class BuildingDetailView(DetailView):
     template_name = "communities/building_detail.html"
     context_object_name = "building"
     model = Building
+    extra_context = {"title": "Project 2"}
 
     def get(self, request, *args, **kwargs):
         self.create_issue_report_qr_code()
         request.session["id_building"] = kwargs.get("id_building")
         return super().get(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
 
     def create_issue_report_qr_code(self):
         building_id = self.kwargs.get("pk")

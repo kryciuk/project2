@@ -7,6 +7,8 @@ from django.views import View
 
 
 class BuildingQRDownloadView(View):
+    extra_context = {"title": "Project 2"}
+
     def get(self, request, id_building, filename):
         file_path = os.path.join(settings.MEDIA_ROOT, f"building{id_building}_qrcode.png")
         if not os.path.exists(file_path):
