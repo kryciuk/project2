@@ -28,14 +28,14 @@ urlpatterns = i18n_patterns(
     path("building/", include("communities.urls")),
     path("user/", include("users.urls")),
     path("issue/", include("issues.urls")),
+    path("dashboards/", include("dashboards.urls")),
+    path("invitations/", include("invitations.urls", namespace="invitations")),
+    path("qr_code/", include("qr_code.urls", namespace="qr_code")),
     re_path(
         r"^invitations/accept-invite/(?P<key>\w+)/?$",
         CustomAcceptInvite.as_view(),
         name="accept-invite",
     ),
-    path("dashboards/", include("dashboards.urls")),
-    path("invitations/", include("invitations.urls", namespace="invitations")),
-    path("qr_code/", include("qr_code.urls", namespace="qr_code")),
 )
 
 if settings.DEBUG:
