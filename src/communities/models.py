@@ -2,7 +2,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.urls import reverse
 
-from .choices import CHOICES_CITIES
+from .consts import CHOICES_CITIES
 
 
 class Building(models.Model):

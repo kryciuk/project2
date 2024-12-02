@@ -7,14 +7,11 @@ from .views import (
     BuildingQRDownloadView,
     BuildingUpdateView,
 )
-from .views.residents import ResidentDeleteView, ResidentListView
 
 urlpatterns = [
     path("new", BuildingCreateView.as_view(), name="building-create"),
     path("list", BuildingListView.as_view(), name="building-list"),
     path("<int:pk>", BuildingDetailView.as_view(), name="building-detail"),
     path("<int:pk>/update", BuildingUpdateView.as_view(), name="building-update"),
-    path("<int:pk>/residents", ResidentListView.as_view(), name="resident-list"),
-    path("resident-delete/<int:pk>", ResidentDeleteView.as_view(), name="resident-delete"),
     path("<int:id_building>/download/<str:filename>/", BuildingQRDownloadView.as_view(), name="building-download"),
 ]
