@@ -10,6 +10,7 @@ class ResidentDashboardView(ListView, FilterView):
     template_name = "dashboards/dashboard_resident.html"
     context_object_name = "issues"
     filterset_class = IssueFilter
+    paginate_by = 5
 
     def get_queryset(self):
         queryset = Issue.objects.filter(
@@ -23,7 +24,6 @@ class ResidentDashboardView(ListView, FilterView):
 
         self.filterset = IssueFilter(self.request.GET, queryset=queryset)
         return self.filterset.qs
-        # return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

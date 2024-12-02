@@ -11,7 +11,7 @@ from issues.models import Comment, Issue
 
 class CommentAddView(SingleObjectMixin, FormView):
     form_class = CommentForm
-    template_name = "issues/comment_add.html"
+    template_name = ""
 
     def form_invalid(self, form):
         return super().form_invalid(form)

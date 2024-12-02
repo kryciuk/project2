@@ -11,6 +11,7 @@ class IssueListView(LoginRequiredMixin, ListView):
     template_name = "issues/issue_list.html"
     context_object_name = "issues"
     filterset_class = IssuePropertyManagerFilter
+    paginate_by = 5
 
     def get_queryset(self):
         queryset = Issue.objects.filter(status=Issue.IssueStatusChoices.OPEN) | Issue.objects.filter(
