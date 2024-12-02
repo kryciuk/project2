@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 
 from communities.models import Building
-from core.base import is_member
+from core.access_controls_utils import is_member
 
 
 class BuildingListView(LoginRequiredMixin, ListView):

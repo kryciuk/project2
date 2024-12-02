@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from core.consts import GROUPS
 
-
+# TODO access_control_utils.py
 def is_member(user, group):
     return user.groups.filter(name=group).exists()
 
