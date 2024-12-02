@@ -11,6 +11,7 @@ class IssueCloseView(UpdateView):
     form_class = IssueCloseForm
     template_name = "issues/issue_list.html"
     context_object_name = "issue"
+    extra_context = {"title": "Project2"}
 
     def form_valid(self, form):
         form.instance.status = Issue.IssueStatusChoices.CLOSED

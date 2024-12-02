@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.urls import reverse
+from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.views.generic import FormView
 
@@ -11,6 +11,8 @@ from issues.models import Issue
 class IssueReportView(FormView):
     form_class = IssueForm
     template_name = "issues/issue_report.html"
+    extra_context = {"title": "Project2"}
+    success_url = reverse_lazy("dashboard-resident")
 
     def form_invalid(self, form):
         return super().form_invalid(form)
@@ -32,6 +34,3 @@ class IssueReportView(FormView):
         context = super().get_context_data(**kwargs)
         context["building"] = Building.objects.get(id=self.kwargs.get("id_building"))
         return context
-
-    def get_success_url(self):
-        return reverse("dashboard-resident")

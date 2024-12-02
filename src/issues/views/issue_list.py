@@ -12,6 +12,7 @@ class IssueListView(LoginRequiredMixin, ListView):
     context_object_name = "issues"
     filterset_class = IssuePropertyManagerFilter
     paginate_by = 5
+    extra_context = {"title": "Project2"}
 
     def get_queryset(self):
         queryset = Issue.objects.filter(status=Issue.IssueStatusChoices.OPEN) | Issue.objects.filter(

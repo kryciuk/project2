@@ -38,6 +38,7 @@ class CommentAddView(SingleObjectMixin, FormView):
 class IssueDetailView(DetailView):
     model = Issue
     template_name = "issues/issue_detail.html"
+    extra_context = {"title": "Project2"}
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
