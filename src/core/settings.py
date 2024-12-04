@@ -26,7 +26,7 @@ env.read_env(os.path.join(BASE_DIR.parent, ".env"))
 
 SECRET_KEY = env("SECRET_KEY")
 
-DEBUG = env('DEBUG')
+DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = []
 
