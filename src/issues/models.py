@@ -31,9 +31,6 @@ class Issue(models.Model):
     status = models.CharField(choices=IssueStatusChoices.choices, null=True, blank=True)
     photo = models.ImageField(upload_to="media/issues", null=True, blank=True)
     reported_by = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, related_name="reported_issues")
-    assigned_to = models.ForeignKey(
-        CustomUser, on_delete=models.SET_NULL, null=True, blank=True, related_name="assigned_issues"
-    )
     date_reported = models.DateTimeField(default=timezone.now)
     date_resolved = models.DateTimeField(null=True, blank=True)
 
