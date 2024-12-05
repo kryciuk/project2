@@ -1,10 +1,12 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.views import View
 from django.views.generic import DetailView, FormView
 from django.views.generic.detail import SingleObjectMixin
 
+from core.access_controls_utils import redirect_no_permission
 from issues.forms import CommentForm
 from issues.models import Comment, Issue
 
@@ -47,7 +49,9 @@ class IssueDetailView(DetailView):
         return context
 
 
-class IssueCommentView(View):
+class IssueCommentView(LoginRequiredMixin, View):
+    # permission_required = ["issue.view_issue", "comment.view_comment"]
+
     def get(self, request, *args, **kwargs):
         view = IssueDetailView.as_view()
         return view(request, *args, **kwargs)
@@ -55,3 +59,6 @@ class IssueCommentView(View):
     def post(self, request, *args, **kwargs):
         view = CommentAddView.as_view()
         return view(request, *args, **kwargs)
+
+    def handle_no_permission(self):
+        return redirect_no_permission(self)

@@ -2,7 +2,6 @@ from django.apps import AppConfig
 from django.db.models.signals import post_migrate
 
 from core.utils import _get_perms_for_models
-from issues.models import Issue
 
 
 class LandingConfig(AppConfig):
@@ -17,10 +16,11 @@ class LandingConfig(AppConfig):
         from django.contrib.contenttypes.models import ContentType
 
         from communities.models import Building
+        from issues.models import Comment, Issue
 
         # all model permissions
 
-        models_to_fetch_administrator = [Building, Issue]
+        models_to_fetch_administrator = [Building, Issue, Comment]
         models_to_fetch_property_manager = [Issue]
 
         # single permissions
@@ -32,6 +32,8 @@ class LandingConfig(AppConfig):
         )
         permission_view_building = Permission.objects.get(codename="view_building", content_type=content_type_profile)
         permission_add_issue = Permission.objects.get(codename="add_issue", content_type=content_type_profile)
+        permission_view_issue = Permission.objects.get(codename="view_issue", content_type=content_type_profile)
+        permission_add_comment = Permission.objects.get(codename="add_comment", content_type=content_type_profile)
 
         # administrator
 
@@ -42,9 +44,11 @@ class LandingConfig(AppConfig):
 
         property_manager, _ = Group.objects.get_or_create(name="Property Manager")
         administrator.permissions.set(_get_perms_for_models(models_to_fetch_property_manager))
-        property_manager.permissions.add([permission_update_building, permission_view_building])
+        property_manager.permissions.add(
+            [permission_update_building, permission_view_building, permission_add_comment]
+        )
 
         # resident
 
         resident, _ = Group.objects.get_or_create(name="Resident")
-        property_manager.permissions.add([permission_add_issue])
+        property_manager.permissions.add([permission_add_issue, permission_view_issue, permission_add_comment])
