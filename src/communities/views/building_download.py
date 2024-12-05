@@ -1,6 +1,7 @@
 import os
 
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import FileResponse, Http404
 from django.utils.http import content_disposition_header
 from django.views import View
@@ -8,8 +9,9 @@ from django.views import View
 from communities.models import Building
 
 
-class BuildingQRDownloadView(View):
+class BuildingQRDownloadView(LoginRequiredMixin, PermissionRequiredMixin, View):
     extra_context = {"title": "Project 2"}
+    permission_required = "building.view_building"
 
     def get(self, request, id_building, filename):
         building = Building.objects.get(pk=id_building)
