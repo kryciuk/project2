@@ -14,7 +14,7 @@ class BuildingUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
     model = Building
     extra_context = {"action": "update", "title": "Project 2"}
     success_url = reverse_lazy("dashboard-administrator")
-    permission_required = "building.change_building"
+    permission_required = "communities.change_building"
 
     def handle_no_permission(self):
         return redirect_no_permission(self)

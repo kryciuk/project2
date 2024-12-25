@@ -24,11 +24,11 @@ class ResidentFactory(factory.django.DjangoModelFactory):
     building = factory.SubFactory(BuildingFactory)
 
     @factory.post_generation
-    def set_owner_status(self, create, extracted, **kwargs):
+    def set_resident_status(self, create, extracted, **kwargs):
         if not create:
             return
-        administrator_group = Group.objects.get(name="Resident")
-        administrator_group.user_set.add(self)
+        resident_group = Group.objects.get(name="Resident")
+        resident_group.user_set.add(self)
 
     @classmethod
     def _after_postgeneration(cls, instance, create, results=None):

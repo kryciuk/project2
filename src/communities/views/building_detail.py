@@ -10,7 +10,7 @@ class BuildingDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView
     context_object_name = "building"
     model = Building
     extra_context = {"title": "Project 2"}
-    permission_required = "building.view_building"
+    permission_required = "communities.view_building"
 
     def get(self, request, *args, **kwargs):
         request.session["id_building"] = kwargs.get("id_building")

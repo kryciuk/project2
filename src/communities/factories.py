@@ -4,7 +4,7 @@ import factory
 
 from communities.consts import CHOICES_CITIES
 from communities.models import Building
-from users.factories import PropertyManagerFactory
+from users.factories.factory_property_manager import PropertyManagerFactory
 
 
 def random_postal_code():

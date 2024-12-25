@@ -11,7 +11,7 @@ class BuildingListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     context_object_name = "buildings"
     queryset = Building.objects.all()
     extra_context = {"title": "Project 2"}
-    permission_required = "building.view_building"
+    permission_required = "communities.view_building"
 
     def get_queryset(self):
         user = self.request.user

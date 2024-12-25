@@ -14,11 +14,12 @@ class BuildingCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
     form_class = BuildingForm
     extra_context = {"action": "create", "title": "Project 2"}
     success_url = reverse_lazy("dashboard-administrator")
-    permission_required = "building.add_building"
+    permission_required = "communities.add_building"
 
     def form_valid(self, form):
         messages.success(self.request, _("Building created successfully."))
         return super().form_valid(form)
 
     def handle_no_permission(self):
+        # return redirect_no_permission(request=self.request)
         return redirect_no_permission(self)
