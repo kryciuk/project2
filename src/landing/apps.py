@@ -46,7 +46,7 @@ class LandingConfig(AppConfig):
         # property_manager
 
         property_manager, _ = Group.objects.get_or_create(name="Property Manager")
-        administrator.permissions.set(_get_perms_for_models(models_to_fetch_property_manager))
+        property_manager.permissions.set(_get_perms_for_models(models_to_fetch_property_manager))
         property_manager.permissions.add(permission_update_building)
         property_manager.permissions.add(permission_view_building)
         property_manager.permissions.add(permission_add_comment)

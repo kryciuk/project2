@@ -10,11 +10,11 @@ def random_name(group: str):
     return f"username{randint(1, 100000)}-{group}"
 
 
-class PropertyManagerFactory(factory.django.DjangoModelFactory):
+class AdministratorFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = CustomUser
 
-    username = factory.Sequence(lambda n: f'{random_name("property_manager")}{n}')
+    username = factory.Sequence(lambda n: f'{random_name("administrator")}{n}')
     first_name = factory.Faker("first_name")
     last_name = factory.Faker("last_name")
     email = factory.LazyAttribute(lambda obj: f"{obj.username}@test.com")
@@ -22,11 +22,11 @@ class PropertyManagerFactory(factory.django.DjangoModelFactory):
     phone_number = factory.Faker("phone_number", locale="pl_pl")
 
     @factory.post_generation
-    def set_property_manager_status(self, create, extracted, **kwargs):
+    def set_administrator_status(self, create, extracted, **kwargs):
         if not create:
             return
-        property_manager_group = Group.objects.get(name="Property Manager")
-        property_manager_group.user_set.add(self)
+        administrator_group = Group.objects.get(name="Administrator")
+        administrator_group.user_set.add(self)
 
     @classmethod
     def _after_postgeneration(cls, instance, create, results=None):

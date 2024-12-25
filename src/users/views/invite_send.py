@@ -1,14 +1,17 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import redirect
 from django.views.generic import FormView
 
+from core.access_controls_utils import redirect_to_dashboard_based_on_group
 from users.forms import SendPropertyManagerInvitationForm, SendResidentInvitationForm
 from users.models import CustomInvitation
 
 
-class InviteResidentSendView(FormView):
+class InviteResidentSendView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
     template_name = "users/invite_send.html"
     form_class = SendResidentInvitationForm
     extra_context = {"title": "Project2", "invite": "invite_resident"}
+    permission_required = "users.add_custominvitation"
 
     def form_valid(self, form):
         email_address = form.instance.email
@@ -23,13 +26,15 @@ class InviteResidentSendView(FormView):
                 group=CustomInvitation.GroupChoices.GROUP__RESIDENT,
             )
             invitation.send_invitation(request=self.request)
-        return redirect("dashboard-property-manager")
+        group = self.request.user.groups.all()[0].name
+        return redirect_to_dashboard_based_on_group(group)
 
 
-class InvitePropertyManagerSendView(FormView):
+class InvitePropertyManagerSendView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
     template_name = "users/invite_send.html"
     form_class = SendPropertyManagerInvitationForm
     extra_context = {"title": "Project2", "invite": "invite_property_manager"}
+    permission_required = "users.add_custominvitation"
 
     def form_valid(self, form):
         email_address = form.instance.email
@@ -43,4 +48,5 @@ class InvitePropertyManagerSendView(FormView):
                 email=email_address, group=CustomInvitation.GroupChoices.GROUP__PROPERTY_MANAGER
             )
             invitation.send_invitation(request=self.request)
-        return redirect("dashboard-administrator")
+        group = self.request.user.groups.all()[0].name
+        return redirect_to_dashboard_based_on_group(group)
