@@ -14,7 +14,7 @@ class IssueReportView(FormView):
     template_name = "issues/issue_report.html"
     extra_context = {"title": "Project2"}
     success_url = reverse_lazy("dashboard-resident")
-    permission_required = "issue.add_issue"
+    permission_required = "issues.add_issue"
 
     def form_invalid(self, form):
         return super().form_invalid(form)

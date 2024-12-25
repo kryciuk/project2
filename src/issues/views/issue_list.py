@@ -14,7 +14,7 @@ class IssueListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     filterset_class = IssuePropertyManagerFilter
     paginate_by = 5
     extra_context = {"title": "Project2"}
-    permission_required = "issue.change_issue"
+    permission_required = "issues.change_issue"
 
     def get_queryset(self):
         queryset = Issue.objects.filter(status=Issue.IssueStatusChoices.OPEN) | Issue.objects.filter(

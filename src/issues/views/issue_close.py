@@ -14,7 +14,7 @@ class IssueCloseView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = "issues/issue_list.html"
     context_object_name = "issue"
     extra_context = {"title": "Project2"}
-    permission_required = "issue.change_issue"
+    permission_required = "issues.change_issue"
 
     def form_valid(self, form):
         form.instance.status = Issue.IssueStatusChoices.CLOSED

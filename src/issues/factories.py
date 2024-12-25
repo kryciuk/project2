@@ -2,7 +2,7 @@ import factory
 from factory.fuzzy import FuzzyChoice
 
 from issues.models import Comment, Issue
-from users.factories_resident import ResidentFactory
+from users.factories.factory_resident import ResidentFactory
 from users.models import CustomUser
 
 

@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.views import View
@@ -49,8 +49,8 @@ class IssueDetailView(DetailView):
         return context
 
 
-class IssueCommentView(LoginRequiredMixin, View):
-    # permission_required = ["issue.view_issue", "comment.view_comment"]
+class IssueCommentView(LoginRequiredMixin, PermissionRequiredMixin, View):
+    permission_required = "issues.view_issue"
 
     def get(self, request, *args, **kwargs):
         view = IssueDetailView.as_view()
