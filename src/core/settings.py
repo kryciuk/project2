@@ -47,14 +47,15 @@ INSTALLED_APPS = [
     "invitations",
     "qr_code",
     "phonenumber_field",
+    "django_extensions",
 ]
 
 INSTALLED_EXTENSIONS = [
     "users",
-    "landing",
     "communities",
     "dashboards",
     "issues",
+    "landing",  # must be last
 ]
 
 INSTALLED_APPS += INSTALLED_EXTENSIONS
@@ -134,7 +135,7 @@ LANGUAGES = [("en", "English"), ("pl", "Polish")]
 
 LOCALE_PATHS = [BASE_DIR, "locale"]
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en"
 
 TIME_ZONE = "UTC"
 
@@ -160,12 +161,6 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 AUTH_USER_MODEL = "users.CustomUser"
 
-# django-allauth configuration:
-ACCOUNT_ADAPTER = "invitations.models.InvitationsAdapter"
-
-# django-invitations configuration:
-INVITATIONS_ADAPTER = ACCOUNT_ADAPTER
-
 # STMP CONFIGURATION
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -180,8 +175,13 @@ EMAIL_HOST_PASSWORD = env("SMTP_PASSWORD")
 SITE_ID = 1
 INVITATIONS_SIGNUP_REDIRECT = "registration"
 INVITATIONS_INVITATIONS_MODEL = "CustomInvitation"
-ACCOUNT_ADAPTER = "invitations.models.InvitationsAdapter"
 INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP = True
+
+# django-allauth configuration:
+ACCOUNT_ADAPTER = "invitations.models.InvitationsAdapter"
+
+# django-invitations configuration:
+INVITATIONS_ADAPTER = ACCOUNT_ADAPTER
 
 # MEDIA
 

@@ -5,7 +5,6 @@ from django.urls import reverse
 from core.consts import GROUPS
 
 
-# TODO access_control_utils.py
 def is_member(user, group):
     return user.groups.filter(name=group).exists()
 
@@ -29,3 +28,17 @@ def redirect_no_permission(self):
         return redirect_to_dashboard_based_on_group(group.name)
     messages.warning(self.request, "You can't access this page.")
     return redirect_to_dashboard_based_on_group("")
+
+
+"""
+
+def redirect_no_permission(request: 'HTTPrequest'):
+    if request.user.is_authenticated:
+        messages.warning(request, "You can't access this page.")
+        group = request.user.groups.first()
+        return redirect_to_dashboard_based_on_group(group.name)
+    messages.warning(request, "You can't access this page.")
+    return redirect_to_dashboard_based_on_group("")
+
+
+"""
