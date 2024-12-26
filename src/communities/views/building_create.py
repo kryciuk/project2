@@ -21,5 +21,4 @@ class BuildingCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
         return super().form_valid(form)
 
     def handle_no_permission(self):
-        # return redirect_no_permission(request=self.request)
-        return redirect_no_permission(self)
+        return redirect_no_permission(self.request)

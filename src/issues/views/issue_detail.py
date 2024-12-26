@@ -61,4 +61,4 @@ class IssueCommentView(LoginRequiredMixin, PermissionRequiredMixin, View):
         return view(request, *args, **kwargs)
 
     def handle_no_permission(self):
-        return redirect_no_permission(self)
+        return redirect_no_permission(self.request)

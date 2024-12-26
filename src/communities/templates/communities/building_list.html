@@ -10,17 +10,34 @@
 {% block content %}
     <div class="container">
         <h2 class="form-title-custom">{% trans "Buildings" %}</h2>
-        {% if not buildings %}
-            <a class="align-center">{% trans "Currently there are no buildings..." %}</a>
-        {% endif %}
-        {% for building in buildings %}
-            <div class="mt-2">
-                <a class="btn btn-outline-dark"
-                   href="{% url "building-detail" building.id %}">{{ building }}</a>
-            </div>
-        {% endfor %}
-        {% if request.user|has_group:"Propety Manager" or request.user.is_superuser %}
-            <div class="mt-4">
+        <div class="buildings-section">
+            <h3 class="title-smaller-custom">{% trans "Managed buildings" %}</h3>
+            {% if not buildings %}
+                <p class="text-center text-muted">{% trans "Currently there are no buildings..." %}</p>
+            {% else %}
+                <div class="list-group">
+                    {% for building in buildings %}
+                        <a class="btn btn-outline-dark list-group-item mb-2"
+                           href="{% url 'building-detail' building.id %}">{{ building }}</a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="buildings-section">
+            <h3 class="title-smaller-custom">{% trans "Other buildings" %}</h3>
+            {% if not other_buildings %}
+                <p class="text-center text-muted">{% trans "Currently there are no buildings..." %}</p>
+            {% else %}
+                <div class="list-group">
+                    {% for other_building in other_buildings %}
+                        <a class="btn btn-outline-dark list-group-item mb-2"
+                           href="{% url 'building-detail' other_building.id %}">{{ other_building }}</a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        {% if request.user|has_group:"Administrator" or request.user.is_superuser %}
+            <div class="text-center mt-4">
                 <a class="btn btn-outline-info" href="{% url 'building-create' %}">{% trans "Add new building" %}</a>
             </div>
         {% endif %}

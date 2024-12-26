@@ -29,4 +29,4 @@ class IssueListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         return context
 
     def handle_no_permission(self):
-        return redirect_no_permission(self)
+        return redirect_no_permission(self.request)

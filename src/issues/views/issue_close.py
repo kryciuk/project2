@@ -25,4 +25,4 @@ class IssueCloseView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         return reverse_lazy("issue-detail", kwargs={"pk": self.get_object().pk})
 
     def handle_no_permission(self):
-        return redirect_no_permission(self)
+        return redirect_no_permission(self.request)

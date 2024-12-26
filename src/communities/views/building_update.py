@@ -17,4 +17,4 @@ class BuildingUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
     permission_required = "communities.change_building"
 
     def handle_no_permission(self):
-        return redirect_no_permission(self)
+        return redirect_no_permission(self.request)

@@ -17,12 +17,12 @@ class LandingConfig(AppConfig):
 
         from communities.models import Building
         from issues.models import Comment, Issue
-        from users.models import CustomInvitation
+        from users.models import CustomInvitation, CustomUser
 
         # all model permissions
 
-        models_to_fetch_administrator = [Building, Issue, Comment, CustomInvitation]
-        models_to_fetch_property_manager = [Issue, CustomInvitation]
+        models_to_fetch_administrator = [Building, Issue, Comment, CustomInvitation, CustomUser]
+        models_to_fetch_property_manager = [Issue, CustomInvitation, CustomUser]
 
         # single permissions
 
