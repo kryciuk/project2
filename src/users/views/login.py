@@ -4,9 +4,10 @@ from django.urls.base import reverse
 from django.utils.translation import gettext_lazy as _
 
 from core.access_controls_utils import is_member
+from core.mixins import NotLoggedInRequiredMixin
 
 
-class UserLoginView(LoginView):
+class UserLoginView(NotLoggedInRequiredMixin, LoginView):
     template_name = "users/login.html"
     extra_context = {"title": "Project2"}
 

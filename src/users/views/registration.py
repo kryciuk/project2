@@ -11,7 +11,7 @@ from users.models import CustomInvitation
 
 
 class RegisterView(UserPassesTestMixin, FormView):
-    template_name = "users/register.html"
+    template_name = "users/registration.html"
     form_class = CreateUserForm
     extra_context = {"title": "Project2"}
 

@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpRequest, HttpResponseRedirect
 from django.urls import reverse
 
 from core.consts import GROUPS
@@ -21,24 +21,10 @@ def redirect_to_dashboard_based_on_group(group):
             return HttpResponseRedirect(reverse("login"))
 
 
-def redirect_no_permission(self):
-    if self.request.user.is_authenticated:
-        messages.warning(self.request, "You can't access this page.")
-        group = self.request.user.groups.first()
-        return redirect_to_dashboard_based_on_group(group.name)
-    messages.warning(self.request, "You can't access this page.")
-    return redirect_to_dashboard_based_on_group("")
-
-
-"""
-
-def redirect_no_permission(request: 'HTTPrequest'):
+def redirect_no_permission(request: HttpRequest):
     if request.user.is_authenticated:
         messages.warning(request, "You can't access this page.")
         group = request.user.groups.first()
         return redirect_to_dashboard_based_on_group(group.name)
     messages.warning(request, "You can't access this page.")
     return redirect_to_dashboard_based_on_group("")
-
-
-"""
