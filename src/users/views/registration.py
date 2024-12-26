@@ -41,4 +41,5 @@ class RegisterView(UserPassesTestMixin, FormView):
         group = Group.objects.get(name=invitation.group)
         group.user_set.add(self.request.user)
         messages.success(self.request, _(f"Account created successfully for {self.request.user.username}."))
+        invitation.delete()
         return redirect("login")
