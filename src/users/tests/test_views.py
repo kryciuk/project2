@@ -243,3 +243,82 @@ class TestRegistrationView(TransactionTestCase):
         self.client.get(reverse("accept-invite", kwargs={"key": invitation.key}), follow=True)
         response = self.client.get(reverse("registration"))
         self.assertTemplateUsed(response, "users/registration.html")
+
+
+class TestResidentDeleteView(TransactionTestCase):
+    reset_sequences = True
+
+    def setUp(self):
+        activate("en")
+
+        self.user_administrator = AdministratorFactory.create()
+        self.user_administrator.save()
+
+        self.user_property_manager = PropertyManagerFactory.create()
+        self.user_property_manager.save()
+
+        self.building_administrator = BuildingFactory.create(manager=self.user_administrator)
+        self.building_administrator.save()
+
+        self.building_property_manager = BuildingFactory.create(manager=self.user_property_manager)
+        self.building_property_manager.save()
+
+        self.user_resident1 = ResidentFactory.create(building=self.building_administrator)
+        self.user_resident1.save()
+
+        self.user_resident2 = ResidentFactory.create(building=self.building_property_manager)
+        self.user_resident2.save()
+
+    def test_if_administrator_deletes_residents_correctly(self):
+        self.client.force_login(self.user_administrator)
+        self.client.post(reverse("resident-delete", kwargs={"pk": self.user_resident1.id}), follow=True)
+        self.client.post(reverse("resident-delete", kwargs={"pk": self.user_resident2.id}), follow=True)
+        self.assertFalse(CustomUser.objects.filter(pk=self.user_resident1.id).exists())
+        self.assertFalse(CustomUser.objects.filter(pk=self.user_resident2.id).exists())
+
+    def test_if_property_manager_can_delete_only_own_residents(self):
+        self.client.force_login(self.user_property_manager)
+        self.client.post(reverse("resident-delete", kwargs={"pk": self.user_resident1.id}), follow=True)
+        self.client.post(reverse("resident-delete", kwargs={"pk": self.user_resident2.id}), follow=True)
+        self.assertTrue(CustomUser.objects.filter(pk=self.user_resident1.id).exists())
+        self.assertFalse(CustomUser.objects.filter(pk=self.user_resident2.id).exists())
+
+    def test_message_is_shown_after_successful_deletion(self):
+        self.client.force_login(self.user_administrator)
+        response = self.client.post(reverse("resident-delete", kwargs={"pk": self.user_resident1.id}), follow=True)
+        message = list(response.context.get("messages"))[0]
+        self.assertEqual(message.tags, "warning")
+        self.assertEqual(message.message, "Resident successfully deleted.")
+
+    def test_if_user_is_redirected_after_successful_deletion(self):
+        self.client.force_login(self.user_administrator)
+        building_id = self.user_resident1.building.id
+        response = self.client.post(reverse("resident-delete", kwargs={"pk": self.user_resident1.id}), follow=True)
+        self.assertRedirects(response, reverse("resident-list", kwargs={"pk": building_id}))
+
+
+class TestResidentListView(TransactionTestCase):
+    reset_sequences = True
+
+    def setUp(self):
+        activate("en")
+
+        self.user_administrator = AdministratorFactory.create()
+        self.user_administrator.save()
+
+        self.building = BuildingFactory.create(manager=self.user_administrator)
+        self.building.save()
+
+        self.user_residents = ResidentFactory.create_batch(5, building=self.building)
+        for user in self.user_residents:
+            user.save()
+
+    def test_if_users_are_shown_on_the_list(self):
+        self.client.force_login(self.user_administrator)
+        response = self.client.get(reverse("resident-list", kwargs={"pk": self.building.id}))
+        self.assertCountEqual(response.context["object_list"], self.user_residents)
+
+    def test_correct_template_is_used(self):
+        self.client.force_login(self.user_administrator)
+        response = self.client.get(reverse("resident-list", kwargs={"pk": self.building.id}))
+        self.assertTemplateUsed(response, "users/resident_list.html")

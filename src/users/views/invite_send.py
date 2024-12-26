@@ -32,6 +32,7 @@ class InviteResidentSendView(LoginRequiredMixin, PermissionRequiredMixin, FormVi
         )
         invitation.send_invitation(request=self.request)
         group = self.request.user.groups.all()[0].name
+        messages.success(self.request, _("An invitation was successfully sent."))
         return redirect_to_dashboard_based_on_group(group)
 
 
@@ -57,4 +58,5 @@ class InvitePropertyManagerSendView(LoginRequiredMixin, PermissionRequiredMixin,
         )
         invitation.send_invitation(request=self.request)
         group = self.request.user.groups.all()[0].name
+        messages.success(self.request, _("An invitation was successfully sent."))
         return redirect_to_dashboard_based_on_group(group)

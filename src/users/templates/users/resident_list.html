@@ -1,0 +1,52 @@
+{% extends "landing/base.html" %}
+{% load i18n %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block title %}
+    {{ title }}
+{% endblock title %}
+{% block content %}
+    <div class="container">
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <table class="table table-submit">
+                        <thead>
+                            <tr>
+                                <th class="small-font">First Name</th>
+                                <th class="small-font">Last Name</th>
+                                <th class="small-font">Phone</th>
+                                <th class="small-font">Email</th>
+                                <th class="small-font">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for resident in residents %}
+                                <tr>
+                                    <td class="text-break small-font">{{ resident.first_name }}</td>
+                                    <td class="text-break small-font">{{ resident.last_name }}</td>
+                                    <td class="text-break small-font">{{ resident.phone_number }}</td>
+                                    <td class="text-break small-font">{{ resident.email }}</td>
+                                    <td class="text-break small-font text-center">
+                                        <form method="post" action="{% url 'resident-delete' resident.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger btn-sm confirm-delete">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if not residents %}
+                        <div class="d-flex justify-content-center align-items-center"
+                             style="height: 100px">
+                            <small class="text-muted">{% trans "Currently there are no residents..." %}</small>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </article>
+    </div>
+{% endblock content %}

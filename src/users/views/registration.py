@@ -16,7 +16,7 @@ class RegisterView(UserPassesTestMixin, FormView):
     extra_context = {"title": "Project2"}
 
     def handle_no_permission(self):
-        return redirect_no_permission(self)
+        return redirect_no_permission(self.request)
 
     def test_func(self):
         return self.request.session.get("invite_key")
