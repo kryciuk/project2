@@ -12,7 +12,7 @@ def random_postal_code():
 
 
 def random_city():
-    return CHOICES_CITIES[randint(0, len(CHOICES_CITIES))][0]
+    return CHOICES_CITIES[randint(0, len(CHOICES_CITIES) - 1)][0]
 
 
 class BuildingFactory(factory.django.DjangoModelFactory):
