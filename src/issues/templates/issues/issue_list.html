@@ -40,8 +40,8 @@
         <h2 class="form-title-custom">{% trans "Search" %}</h2>
         <form method="get" action="{% url 'issue-list' %}">
             {{ form|crispy }}
-            <div class="centered">
-                <button class="btn btn-info" type="submit">{% trans "Search" %}</button>
+            <div class="centered mt-4">
+                <button class="btn btn-outline-info" type="submit">{% trans "Search" %}</button>
             </div>
         </form>
     </div>
