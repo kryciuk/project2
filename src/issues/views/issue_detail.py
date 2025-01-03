@@ -1,5 +1,9 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    PermissionRequiredMixin,
+    UserPassesTestMixin,
+)
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.views import View
@@ -9,6 +13,7 @@ from django.views.generic.detail import SingleObjectMixin
 from core.access_controls_utils import redirect_no_permission
 from issues.forms import CommentForm
 from issues.models import Comment, Issue
+from landing.templatetags.auth_extras import has_group
 
 
 class CommentAddView(SingleObjectMixin, FormView):
@@ -29,18 +34,15 @@ class CommentAddView(SingleObjectMixin, FormView):
 
         return super().form_valid(form)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-
     def get_success_url(self):
         return reverse("issue-detail", kwargs={"pk": self.kwargs.get("pk")})
 
 
-class IssueDetailView(DetailView):
+class IssueDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = Issue
     template_name = "issues/issue_detail.html"
     extra_context = {"title": "Project2"}
+    permission_required = "issues.view_issue"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -49,7 +51,7 @@ class IssueDetailView(DetailView):
         return context
 
 
-class IssueCommentView(LoginRequiredMixin, PermissionRequiredMixin, View):
+class IssueCommentView(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin, View):
     permission_required = "issues.view_issue"
 
     def get(self, request, *args, **kwargs):
@@ -62,3 +64,9 @@ class IssueCommentView(LoginRequiredMixin, PermissionRequiredMixin, View):
 
     def handle_no_permission(self):
         return redirect_no_permission(self.request)
+
+    def test_func(self):
+        building = Issue.objects.get(pk=self.kwargs.get("pk")).building.id
+        if has_group(self.request.user, "Administrator") or has_group(self.request.user, "Property Manager"):
+            return True
+        return building == self.request.user.building.id

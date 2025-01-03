@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.views.generic import FormView
@@ -9,7 +10,7 @@ from issues.forms import IssueForm
 from issues.models import Issue
 
 
-class IssueReportView(FormView):
+class IssueReportView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
     form_class = IssueForm
     template_name = "issues/issue_report.html"
     extra_context = {"title": "Project2"}

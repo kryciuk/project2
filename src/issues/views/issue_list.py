@@ -19,13 +19,14 @@ class IssueListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     def get_queryset(self):
         queryset = Issue.objects.filter(status=Issue.IssueStatusChoices.OPEN) | Issue.objects.filter(
             status=Issue.IssueStatusChoices.CLOSED, date_resolved__gte=timezone.now() - timezone.timedelta(days=14)
-        )
+        ).order_by("id")
         self.filterset = IssuePropertyManagerFilter(self.request.GET, queryset=queryset)
         return self.filterset.qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"] = self.filterset.form
+        context["filters_applied"] = any(self.request.GET.values())
         return context
 
     def handle_no_permission(self):

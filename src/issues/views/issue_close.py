@@ -18,7 +18,7 @@ class IssueCloseView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.status = Issue.IssueStatusChoices.CLOSED
-        form.instance.date_resolved = timezone.datetime.now()
+        form.instance.date_resolved = timezone.now()
         return super().form_valid(form)
 
     def get_success_url(self):
