@@ -9,30 +9,33 @@
 {% block content %}
     <div class="container">
         <h2 class="form-title-custom">{% trans "Issues" %}</h2>
-        {% for issue in issues %}
-            <div class="mt-2">
-                <a class="btn btn-outline-dark" href="{% url 'issue-detail' issue.pk %}">{{ issue }} {{ issue.status }}</a>
-            </div>
-        {% empty %}
-            <div class="text-center">{% trans "No entries to display." %}</div>
-        {% endfor %}
-            <div class="pagination mt-2">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        <div class="text-center m-4">
+            {% if not issues %}
+                {% if filters_applied %}
+                    <a>{% trans "No issues match the current filters. Try adjusting the filters." %}</a>
+                {% else %}
+                    <a>{% trans "Currently there are no issues..." %}</a>
+                {% endif %}
             {% endif %}
-    
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            {% for issue in issues %}
+                <div class="mt-2">
+                    <a class="btn btn-outline-dark" href="{% url 'issue-detail' issue.pk %}">{{ issue }} {{ issue.status }}</a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="pagination mt-2">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="current">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
             </span>
-    
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
-    </div>
+        </div>
         <div class="mt-4">
             <a class="btn btn-outline-info"
                href="{% url 'issue-report' building_id %}">{% trans "Report Issue" %}</a>

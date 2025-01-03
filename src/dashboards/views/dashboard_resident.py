@@ -16,10 +16,12 @@ class ResidentDashboardView(ListView, FilterView):
         queryset = Issue.objects.filter(
             building=self.request.user.building,
             status__in=[Issue.IssueStatusChoices.OPEN],
-        ).order_by("-date_reported") | Issue.objects.filter(
+        ) | Issue.objects.filter(
             building=self.request.user.building,
             status=Issue.IssueStatusChoices.CLOSED,
             date_resolved__gte=timezone.now() - timezone.timedelta(days=14),
+        ).order_by(
+            "-date_reported"
         )
 
         self.filterset = IssueFilter(self.request.GET, queryset=queryset)
@@ -30,4 +32,5 @@ class ResidentDashboardView(ListView, FilterView):
         context["title"] = "Project2 - Resident"
         context["building_id"] = self.request.user.building.id
         context["form"] = self.filterset.form
+        context["filters_applied"] = any(self.request.GET.values())
         return context
