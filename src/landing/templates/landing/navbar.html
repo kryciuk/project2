@@ -28,13 +28,13 @@
             {% endif %}
             {% if request.user|has_group:"Property Manager" or request.user.is_superuser %}
                 <a class="nav-item nav-link"
-                   href="{% url "dashboard-property-manager" %}">Dashboard Property Manager</a>
+                   href="{% url "dashboard-property-manager" %}">{% trans "Dashboard Property Manager" %}</a>
             {% endif %}
             {% if request.user|has_group:"Administrator" or request.user.is_superuser %}
-                <a class="nav-item nav-link" href="{% url "dashboard-administrator" %}">Dashboard Administrator</a>
+                <a class="nav-item nav-link" href="{% url "dashboard-administrator" %}">{% trans "Dashboard Administrator" %}</a>
             {% endif %}
             {% if request.user|has_group:"Resident" or request.user.is_superuser %}
-                <a class="nav-item nav-link" href="{% url "dashboard-resident" %}">Dashboard Resident</a>
+                <a class="nav-item nav-link" href="{% url "dashboard-resident" %}">{% trans "Dashboard Resident" %}</a>
             {% endif %}
             {% if user.is_authenticated %}
                 <form method="post" action="{% url 'logout' %}" id="logoutForm">
