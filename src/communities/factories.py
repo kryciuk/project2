@@ -8,7 +8,7 @@ from users.factories.factory_property_manager import PropertyManagerFactory
 
 
 def random_postal_code():
-    return f"{randint(0,9)}{randint(0,9)}-{randint(0,9)}{randint(0,9)}{randint(0,9)}{randint(0,9)}"
+    return f"{randint(0,9)}{randint(0,9)}-{randint(0,9)}{randint(0,9)}{randint(0,9)}"
 
 
 def random_city():

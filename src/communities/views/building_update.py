@@ -1,5 +1,7 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.urls import reverse_lazy
+from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import UpdateView
 
 from communities.forms import BuildingForm
@@ -13,8 +15,14 @@ class BuildingUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
     form_class = BuildingForm
     model = Building
     extra_context = {"action": "update", "title": "Project 2"}
-    success_url = reverse_lazy("dashboard-administrator")
     permission_required = "communities.change_building"
 
     def handle_no_permission(self):
         return redirect_no_permission(self.request)
+
+    def get_success_url(self):
+        return reverse("building-update", kwargs={"pk": self.object.pk})
+
+    def form_valid(self, form):
+        messages.success(self.request, _("Building updated successfully."))
+        return super().form_valid(form)
