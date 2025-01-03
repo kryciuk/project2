@@ -30,5 +30,6 @@ class ResidentDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView
         return reverse("resident-list", kwargs={"pk": id_building})
 
     def handle_no_permission(self):
+        id_building = CustomUser.objects.get(id=self.kwargs["pk"]).building.id
         messages.warning(self.request, _("You do not have permission to delete this resident."))
-        return HttpResponseRedirect(reverse("resident-list", kwargs={"pk": self.kwargs["pk"]}))
+        return HttpResponseRedirect(reverse("resident-list", kwargs={"pk": id_building}))
