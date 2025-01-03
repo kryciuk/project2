@@ -5,7 +5,7 @@ from issues.models import Issue
 
 
 class IssueFilter(django_filters.FilterSet):
-    title = django_filters.CharFilter(field_name="title", lookup_expr="iexact", label=_("Title"))
+    title = django_filters.CharFilter(field_name="title", lookup_expr="icontains", label=_("Title"))
     status = django_filters.ChoiceFilter(
         field_name="status", choices=Issue.IssueStatusChoices.choices, label=_("Status")
     )

@@ -1,5 +1,6 @@
 {% extends "landing/base.html" %}
 {% load i18n %}
+{% load auth_extras %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% block title %}
@@ -7,13 +8,17 @@
 {% endblock title %}
 {% block content %}
     <div class="container">
-        <strong>{% trans "Issue" %}:</strong><a>{{ issue.title }}</a>
+        <strong>{% trans "Issue" %}: </strong><a>{{ issue.title }}</a>
         <br>
-        <strong>{% trans "Description" %}:</strong><a>{{ issue.description }}</a>
+        <strong>{% trans "Building" %}: </strong><a>{{ issue.building.name }}</a>
         <br>
-        <strong>{% trans "Reported by" %}:</strong><a>{{ issue.reported_by }}</a>
+        <strong>{% trans "Description" %}: </strong><a>{{ issue.description }}</a>
         <br>
-        <strong>{% trans "Photo" %}:</strong>
+        <strong>{% trans "Reported by" %}: </strong><a>{{ issue.reported_by }}</a>
+        <br>
+        <strong>{% trans "Status" %}: </strong><a>{{ issue.status }}</a>
+        <br>
+        <strong>{% trans "Photo" %}: </strong>
         {% if issue.photo %}
             <a href="{{ issue.get_photo_url }}" target="_blank">
                 <button class="btn btn-outline-secondary">CLICK</button>
@@ -21,5 +26,57 @@
         {% else %}
             <a>---</a>
         {% endif %}
-    </div>
+        <div class="m-3">
+            {% if not comments %}
+                <a class="align-center">{% trans "Currently there are no comments..." %}</a>
+            {% endif %}
+        </div>
+        {% for comment in comments %}
+            <ul>
+                {% if comment.author|has_group:"Property Manager" or comment.author|has_group:"Administrator" %}
+                    <div class="card-update">
+                    {% else %}
+                        <div class="card">
+                        {% endif %}
+                        <strong>
+                            {% if comment.author|has_group:"Property Manager" or comment.author|has_group:"Administrator" %}
+                                {% trans "Update" %}:
+                            {% else %}
+                                {% trans "Comment" %}:
+                            {% endif %}
+                        </strong>
+                        <a>{{ comment.comment }}</a>
+                        <strong>{% trans "Author" %}:</strong><a>{{ comment.author }}</a>
+                    </div>
+                </ul>
+            {% endfor %}
+            <div>
+                <strong>
+                    {% if request.user|has_group:"Property Manager" or request.user|has_group:"Administrator" %}
+                        {% trans "Add update" %}
+                    {% else %}
+                        {% trans "Add comment" %}
+                    {% endif %}
+                </strong>
+                <div>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                        {% if request.user|has_group:"Property Manager" or request.user|has_group:"Administrator" %}
+                            <button class="btn btn-outline-info" type="submit">{% trans "Update" %}</button>
+                        {% else %}
+                            <button class="btn btn-outline-info" type="submit">{% trans "Comment" %}</button>
+                        {% endif %}
+                    </form>
+                    {% if request.user|has_group:"Property Manager" or request.user|has_group:"Administrator" or request.user.is_superuser %}
+                        <div class="mt-1">
+                            <form method="post" action="{% url 'issue-close' issue.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-info">{% trans "Close" %}</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
 {% endblock content %}

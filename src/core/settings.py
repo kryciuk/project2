@@ -23,14 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env.read_env(os.path.join(BASE_DIR.parent, ".env"))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = []
 
@@ -50,14 +46,16 @@ INSTALLED_APPS = [
     "allauth",
     "invitations",
     "qr_code",
+    "phonenumber_field",
+    "django_extensions",
 ]
 
 INSTALLED_EXTENSIONS = [
     "users",
-    "landing",
     "communities",
     "dashboards",
     "issues",
+    "landing",  # must be last
 ]
 
 INSTALLED_APPS += INSTALLED_EXTENSIONS
@@ -73,6 +71,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django_session_timeout.middleware.SessionTimeoutMiddleware",
+    "core.middleware.ClearSessionOnViewChangeMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -136,7 +135,7 @@ LANGUAGES = [("en", "English"), ("pl", "Polish")]
 
 LOCALE_PATHS = [BASE_DIR, "locale"]
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en"
 
 TIME_ZONE = "UTC"
 
@@ -162,12 +161,6 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 AUTH_USER_MODEL = "users.CustomUser"
 
-# django-allauth configuration:
-ACCOUNT_ADAPTER = "invitations.models.InvitationsAdapter"
-
-# django-invitations configuration:
-INVITATIONS_ADAPTER = ACCOUNT_ADAPTER
-
 # STMP CONFIGURATION
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -182,6 +175,13 @@ EMAIL_HOST_PASSWORD = env("SMTP_PASSWORD")
 SITE_ID = 1
 INVITATIONS_SIGNUP_REDIRECT = "registration"
 INVITATIONS_INVITATIONS_MODEL = "CustomInvitation"
+INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP = True
+
+# django-allauth configuration:
+ACCOUNT_ADAPTER = "invitations.models.InvitationsAdapter"
+
+# django-invitations configuration:
+INVITATIONS_ADAPTER = ACCOUNT_ADAPTER
 
 # MEDIA
 

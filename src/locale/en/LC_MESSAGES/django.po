@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#: .\issues\forms.py:25
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-18 21:53+0100\n"
+"POT-Creation-Date: 2024-11-25 20:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +24,7 @@ msgid "Name"
 msgstr ""
 
 #: .\communities\forms.py:13 .\issues\forms.py:13
-#: .\issues\templates\issues\issue_detail.html:12
+#: .\issues\templates\issues\issue_detail.html:15
 msgid "Description"
 msgstr ""
 
@@ -108,15 +109,15 @@ msgstr ""
 msgid "Building created successfully."
 msgstr ""
 
-#: .\dashboards\filters.py:8 .\issues\forms.py:12
+#: .\dashboards\filters.py:8 .\issues\filters.py:9 .\issues\forms.py:12
 msgid "Title"
 msgstr ""
 
-#: .\dashboards\filters.py:10
+#: .\dashboards\filters.py:10 .\issues\filters.py:11
 msgid "Status"
 msgstr ""
 
-#: .\dashboards\filters.py:13 .\issues\forms.py:15
+#: .\dashboards\filters.py:13 .\issues\filters.py:14 .\issues\forms.py:15
 msgid "Severity"
 msgstr ""
 
@@ -132,76 +133,135 @@ msgstr ""
 msgid "Invite new property manager"
 msgstr ""
 
-#: .\dashboards\templates\dashboards\dashboard_property_manager.html:15
-msgid "Reported Issues"
-msgstr ""
-
+#: .\dashboards\templates\dashboards\dashboard_administrator.html:22
 #: .\dashboards\templates\dashboards\dashboard_property_manager.html:17
 msgid "Invite Resident"
 msgstr ""
 
-#: .\dashboards\templates\dashboards\dashboard_resident.html:14
+#: .\dashboards\templates\dashboards\dashboard_property_manager.html:15
+msgid "Reported Issues"
+msgstr ""
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:11
+#: .\issues\templates\issues\issue_list.html:10
+msgid "Issues"
+msgstr ""
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:17
+msgid "No entries to display."
+msgstr ""
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:21
+msgid "Report Issue"
+msgstr ""
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:25
+#: .\dashboards\templates\dashboards\dashboard_resident.html:29
+#: .\issues\templates\issues\issue_list.html:21
+#: .\issues\templates\issues\issue_list.html:25
 msgid "Search"
 msgstr ""
 
-#: .\dashboards\templates\dashboards\dashboard_resident.html:23
-msgid "No entries to display."
+#: .\issues\filters.py:16 .\issues\templates\issues\issue_detail.html:13
+#: .\users\forms.py:12
+msgid "Building"
 msgstr ""
 
 #: .\issues\forms.py:14
 msgid "Location"
 msgstr ""
 
-#: .\issues\forms.py:16 .\issues\templates\issues\issue_detail.html:16
+#: .\issues\forms.py:16 .\issues\templates\issues\issue_detail.html:19
 msgid "Photo"
 msgstr ""
 
-#: .\issues\models.py:12
+#: .\issues\models.py:13
 msgid "Common Area"
 msgstr ""
 
-#: .\issues\models.py:13
+#: .\issues\models.py:14
 msgid "Apartment"
 msgstr ""
 
-#: .\issues\models.py:14
+#: .\issues\models.py:15
 msgid "Garage"
 msgstr ""
 
-#: .\issues\models.py:17
+#: .\issues\models.py:18
 msgid "Low"
 msgstr ""
 
-#: .\issues\models.py:18
+#: .\issues\models.py:19
 msgid "Medium"
 msgstr ""
 
-#: .\issues\models.py:19
+#: .\issues\models.py:20
 msgid "High"
 msgstr ""
 
-#: .\issues\models.py:22
+#: .\issues\models.py:23
 msgid "Open"
 msgstr ""
 
-#: .\issues\models.py:23
+#: .\issues\models.py:24
 msgid "In progress"
 msgstr ""
 
-#: .\issues\models.py:24
+#: .\issues\models.py:25
 msgid "Resolved"
 msgstr ""
 
-#: .\issues\models.py:25
+#: .\issues\models.py:26
 msgid "Closed"
 msgstr ""
 
-#: .\issues\templates\issues\issue_detail.html:10
+#: .\issues\models.py:52
+#, python-brace-format
+msgid "New issue in building {self.building.name}. Level: {self.severity}"
+msgstr ""
+
+#: .\issues\models.py:53
+#, python-brace-format
+msgid ""
+"New issue in building {self.building.name}. Description: {self.description}"
+msgstr ""
+
+#: .\issues\templates\issues\issue_detail.html:11
 msgid "Issue"
 msgstr ""
 
-#: .\issues\templates\issues\issue_detail.html:14
+#: .\issues\templates\issues\issue_detail.html:17
 msgid "Reported by"
+msgstr ""
+
+#: .\issues\templates\issues\issue_detail.html:29
+msgid "Currently there are no comments..."
+msgstr ""
+
+#: .\issues\templates\issues\issue_detail.html:41
+#: .\issues\templates\issues\issue_detail.html:64
+msgid "Update"
+msgstr ""
+
+#: .\issues\templates\issues\issue_detail.html:43
+#: .\issues\templates\issues\issue_detail.html:66
+msgid "Comment"
+msgstr ""
+
+#: .\issues\templates\issues\issue_detail.html:47
+msgid "Author"
+msgstr ""
+
+#: .\issues\templates\issues\issue_detail.html:54
+msgid "Add update"
+msgstr ""
+
+#: .\issues\templates\issues\issue_detail.html:56
+msgid "Add comment"
+msgstr ""
+
+#: .\issues\templates\issues\issue_list.html:12
+msgid "Currently there are no issues..."
 msgstr ""
 
 #: .\issues\templates\issues\issue_report.html:11
@@ -212,26 +272,16 @@ msgstr ""
 msgid "Report"
 msgstr ""
 
-#: .\issues\views\issue_report.py:27
-#, python-brace-format
-msgid ""
-"New issue in building {form.instance.building}. Level: {form.instance."
-"severity}"
+#: .\issues\views\issue_detail.py:26
+msgid "The comment was added successfully."
 msgstr ""
 
-#: .\issues\views\issue_report.py:28
-#, python-brace-format
-msgid ""
-"New issue in building {form.instance.building}. Description: {form.instance."
-"description}"
+#: .\issues\views\issue_report.py:27
+msgid "The issue has been reported successfully."
 msgstr ""
 
 #: .\users\forms.py:12 .\users\forms.py:19 .\users\forms.py:37
 msgid "Email"
-msgstr ""
-
-#: .\users\forms.py:12
-msgid "Building"
 msgstr ""
 
 #: .\users\forms.py:34

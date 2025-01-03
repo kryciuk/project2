@@ -3151,6 +3151,14 @@ fieldset:disabled a.btn {
   width: 100%;
 }
 
+.btn-outline-info-second {
+  color: #17a2b8;
+  border-color: #17a2b8;
+  width: 88%;
+  display: block;
+  margin: 0 auto;
+}
+
 .btn-outline-info:hover {
   color: #fff;
   background-color: #17a2b8;
@@ -5070,6 +5078,25 @@ input[type="button"].btn-block {
   border-radius: 0;
 }
 
+.card-update {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 2px solid rgba(60, 180, 113, 0.5);
+  border-radius: 0;
+}
+
 .card > hr {
   margin-right: 0;
   margin-left: 0;
@@ -5379,6 +5406,7 @@ input[type="button"].btn-block {
   padding-left: 0;
   list-style: none;
   border-radius: 0.25rem;
+  justify-content: center;
 }
 
 .page-link {
@@ -11816,3 +11844,25 @@ select:focus {
             align-items: center;
             flex-direction: column;
         }
+
+.small-font {
+    font-size: 0.75rem;
+}
+
+.text-break {
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+}
+
+.buildings-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+.title-smaller-custom {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

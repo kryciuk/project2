@@ -1,54 +1,62 @@
-from django.shortcuts import redirect
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import FormView
 
+from core.access_controls_utils import redirect_to_dashboard_based_on_group
 from users.forms import SendPropertyManagerInvitationForm, SendResidentInvitationForm
-from users.models import CustomInvitation
+from users.models import CustomInvitation, CustomUser
 
 
-class InviteResidentSendView(FormView):
+class InviteResidentSendView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
     template_name = "users/invite_send.html"
     form_class = SendResidentInvitationForm
+    extra_context = {"title": "Project2", "invite": "invite_resident"}
+    permission_required = "users.add_custominvitation"
+
+    def form_invalid(self, form):
+        messages.warning(self.request, _("A user with this email address is already registered in the system."))
+        return super().form_invalid(form)
 
     def form_valid(self, form):
         email_address = form.instance.email
-        invitation = CustomInvitation.objects.filter(email__iexact=email_address).order_by("created").last()
-        if invitation is None:
-            # Do not use Invitation.objects.create or
-            # Invitation.objects.update_or_create, but use Invitation.create
-            # instead, because it sets the key to a secure random value
-            invitation = CustomInvitation.create(
-                email=email_address,
-                building=form.instance.building,
-                group=CustomInvitation.GroupChoices.GROUP__RESIDENT,
-            )
-            invitation.send_invitation(request=self.request)
-        return redirect("dashboard-property-manager")
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["invite"] = "invite_resident"
-        return context
+        if CustomUser.objects.filter(email__iexact=email_address).exists():
+            return self.form_invalid(form)
+        # Do not use Invitation.objects.create or
+        # Invitation.objects.update_or_create, but use Invitation.create
+        # instead, because it sets the key to a secure random value
+        invitation = CustomInvitation.create(
+            email=email_address,
+            building=form.instance.building,
+            group=CustomInvitation.GroupChoices.GROUP__RESIDENT,
+        )
+        invitation.send_invitation(request=self.request)
+        group = self.request.user.groups.all()[0].name
+        messages.success(self.request, _("An invitation was successfully sent."))
+        return redirect_to_dashboard_based_on_group(group)
 
 
-class InvitePropertyManagerSendView(FormView):
+class InvitePropertyManagerSendView(LoginRequiredMixin, PermissionRequiredMixin, FormView):
     template_name = "users/invite_send.html"
     form_class = SendPropertyManagerInvitationForm
+    extra_context = {"title": "Project2", "invite": "invite_property_manager"}
+    permission_required = "users.add_custominvitation"
+
+    def form_invalid(self, form):
+        messages.warning(self.request, _("A user with this email address is already registered in the system."))
+        return super().form_invalid(form)
 
     def form_valid(self, form):
         email_address = form.instance.email
-        # TODO get_or_create
-        invitation = CustomInvitation.objects.filter(email__iexact=email_address).order_by("created").last()
-        if invitation is None:
-            # Do not use Invitation.objects.create or
-            # Invitation.objects.update_or_create, but use Invitation.create
-            # instead, because it sets the key to a secure random value
-            invitation = CustomInvitation.create(
-                email=email_address, group=CustomInvitation.GroupChoices.GROUP__PROPERTY_MANAGER
-            )
-            invitation.send_invitation(request=self.request)
-        return redirect("dashboard-administrator")
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["invite"] = "invite_property_manager"
-        return context
+        if CustomUser.objects.filter(email__iexact=email_address).exists():
+            return self.form_invalid(form)
+        # Do not use Invitation.objects.create or
+        # Invitation.objects.update_or_create, but use Invitation.create
+        # instead, because it sets the key to a secure random value
+        invitation = CustomInvitation.create(
+            email=email_address, group=CustomInvitation.GroupChoices.GROUP__PROPERTY_MANAGER
+        )
+        invitation.send_invitation(request=self.request)
+        group = self.request.user.groups.all()[0].name
+        messages.success(self.request, _("An invitation was successfully sent."))
+        return redirect_to_dashboard_based_on_group(group)

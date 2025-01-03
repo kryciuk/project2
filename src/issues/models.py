@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -20,8 +21,6 @@ class Issue(models.Model):
 
     class IssueStatusChoices(models.TextChoices):
         OPEN = ("Open", _("Open"))
-        IN_PROGRESS = ("In progress", _("In progress"))
-        RESOLVED = ("Resolved", _("Resolved"))
         CLOSED = ("Closed", _("Closed"))
 
     title = models.CharField(max_length=30)
@@ -29,15 +28,11 @@ class Issue(models.Model):
     building = models.ForeignKey(Building, on_delete=models.SET_NULL, null=True)
     place = models.CharField(choices=IssuePlaceChoices.choices)
     severity = models.CharField(choices=IssueSeverityChoices.choices)
-    status = models.CharField(choices=IssueStatusChoices.choices)
+    status = models.CharField(choices=IssueStatusChoices.choices, null=True, blank=True)
     photo = models.ImageField(upload_to="media/issues", null=True, blank=True)
     reported_by = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, related_name="reported_issues")
-    assigned_to = models.ForeignKey(
-        CustomUser, on_delete=models.SET_NULL, null=True, blank=True, related_name="assigned_issues"
-    )
     date_reported = models.DateTimeField(default=timezone.now)
     date_resolved = models.DateTimeField(null=True, blank=True)
-    update_info = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.title}"
@@ -47,3 +42,21 @@ class Issue(models.Model):
 
     def get_photo_url(self):
         return self.photo.url
+
+    def send_email(self):
+        subject = _(f"New issue in building {self.building.name}. Level: {self.severity}")
+        message = _(f"New issue in building {self.building.name}. Description: {self.description}")
+        from_email = "default"
+        if self.building.manager is None:
+            recipient_list = [user.email for user in CustomUser.objects.filter(groups__name="Administrator")]
+        else:
+            recipient_list = [self.building.manager.email]
+        send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+        return "None"
+
+
+class Comment(models.Model):
+    comment = models.TextField()
+    author = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
+    date = models.DateTimeField(default=timezone.now)
+    issue = models.ForeignKey(Issue, on_delete=models.CASCADE)

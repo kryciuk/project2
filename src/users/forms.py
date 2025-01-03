@@ -20,21 +20,17 @@ class SendPropertyManagerInvitationForm(forms.ModelForm):
 
 
 class CreateUserForm(UserCreationForm):
+    usable_password = None
+
     class Meta:
         model = CustomUser
-        fields = [
-            "username",
-            "first_name",
-            "last_name",
-            "email",
-            "password1",
-            "password2",
-        ]
+        fields = ["username", "first_name", "last_name", "email", "password1", "password2", "phone_number"]
         labels = {
             "username": _("Username"),
             "first_name": _("First name"),
             "last_name": _("Last name"),
             "email": _("Email"),
+            "phone_number": _("Phone number"),
         }
 
         error_messages = {
@@ -44,6 +40,7 @@ class CreateUserForm(UserCreationForm):
             "first_name_required": _("This field is required."),
             "last_name_required": _("This field is required."),
             "email_required": _("This field is required."),
+            "email_not_invited": _("Your email did not receive an invitation to the application."),
         }
 
     def clean_username(self):
@@ -65,7 +62,9 @@ class CreateUserForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data["email"]
         if email:
-            if CustomUser.objects.filter(email=email).exists():
+            if not CustomInvitation.objects.filter(email=email).exists():
+                raise forms.ValidationError(self.Meta.error_messages["email_not_invited"], code="email_not_invited")
+            elif CustomUser.objects.filter(email=email).exists():
                 raise forms.ValidationError(self.Meta.error_messages["email_exists"], code="email_exists")
             return email.lower()
         raise forms.ValidationError(self.Meta.error_messages["email_required"], code="email_required")

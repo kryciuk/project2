@@ -1,4 +1,5 @@
 {% extends "landing/base.html" %}
+{% load i18n %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% block title %}
@@ -6,10 +7,42 @@
 {% endblock title %}
 {% block content %}
     <div class="container">
-        {% for issue in issues %}
-            <div>
-                <a href="{% url "issue-detail" issue.id %}">{{ issue }}</a>
+        <h2 class="form-title-custom">{% trans "Issues" %}</h2>
+        <div class="text-center m-4">
+            {% if not issues %}
+                {% if filters_applied %}
+                    <a>{% trans "No issues match the current filters. Try adjusting the filters." %}</a>
+                {% else %}
+                    <a>{% trans "Currently there are no issues..." %}</a>
+                {% endif %}
+            {% endif %}
+            {% for issue in issues %}
+                <div class="mt-2">
+                    <a class="btn btn-outline-dark" href="{% url "issue-detail" issue.id %}">{{ issue }} {{ issue.status }}</a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="pagination mt-2">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; {% trans "first" %}</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">{% trans "previous" %}</a>
+                {% endif %}
+                <span class="current">{% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}.</span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">{% trans "next" %}</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">{% trans "last" %} &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    <div class="container">
+        <h2 class="form-title-custom">{% trans "Search" %}</h2>
+        <form method="get" action="{% url 'issue-list' %}">
+            {{ form|crispy }}
+            <div class="centered mt-4">
+                <button class="btn btn-outline-info" type="submit">{% trans "Search" %}</button>
             </div>
-        {% endfor %}
+        </form>
     </div>
 {% endblock content %}

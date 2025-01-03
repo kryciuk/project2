@@ -1,29 +1,28 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView
 
 from communities.models import Building
-from core.base import is_member
-
-# from core.base import is_member
+from core.access_controls_utils import redirect_no_permission
 
 
-class BuildingListView(LoginRequiredMixin, ListView):
+class BuildingListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = Building
     template_name = "communities/building_list.html"
     context_object_name = "buildings"
     queryset = Building.objects.all()
+    extra_context = {"title": "Project 2"}
+    permission_required = "communities.view_building"
 
     def get_queryset(self):
         user = self.request.user
-        if is_member(user, "Property Manager"):
-            queryset = Building.objects.filter(manager=user.id).all()
-            return queryset
-        return super().get_queryset()
-        # self.filterset = JobOfferFilter(self.request.GET, queryset=queryset)
-        # return self.filterset.qs
+        queryset = Building.objects.filter(manager=user.id).all()
+        return queryset
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context["form"] = self.filterset.form
-        context["title"] = "Project 2"
+        user = self.request.user
+        context["other_buildings"] = Building.objects.exclude(manager=user.id).all()
         return context
+
+    def handle_no_permission(self):
+        return redirect_no_permission(self.request)

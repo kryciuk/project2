@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#: .\issues\forms.py:31
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-18 21:53+0100\n"
+"POT-Creation-Date: 2025-01-03 18:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +26,7 @@ msgid "Name"
 msgstr "Nazwa"
 
 #: .\communities\forms.py:13 .\issues\forms.py:13
-#: .\issues\templates\issues\issue_detail.html:12
+#: .\issues\templates\issues\issue_detail.html:15
 msgid "Description"
 msgstr "Opis"
 
@@ -47,6 +48,7 @@ msgstr "Numer budynku"
 
 #: .\communities\forms.py:18
 #: .\dashboards\templates\dashboards\dashboard_property_manager.html:10
+#: .\issues\filters.py:21
 msgid "Property Manager"
 msgstr "Zarządca nieruchomości"
 
@@ -92,6 +94,10 @@ msgstr "Zarządca:"
 msgid "Residents"
 msgstr "Mieszkańcy"
 
+#: .\communities\templates\communities\building_detail.html:72
+msgid "QR code"
+msgstr "Kod QR"
+
 #: .\communities\templates\communities\building_list.html:12
 #: .\dashboards\templates\dashboards\dashboard_administrator.html:15
 #: .\dashboards\templates\dashboards\dashboard_property_manager.html:12
@@ -99,30 +105,40 @@ msgid "Buildings"
 msgstr "Budynki"
 
 #: .\communities\templates\communities\building_list.html:14
+msgid "Managed buildings"
+msgstr "Zarządzane budynki"
+
+#: .\communities\templates\communities\building_list.html:16
+#: .\communities\templates\communities\building_list.html:29
 msgid "Currently there are no buildings..."
 msgstr "Obecnie nie ma żadnych budynków..."
 
-#: .\communities\templates\communities\building_list.html:24
-#, fuzzy
-#| msgid "building"
+#: .\communities\templates\communities\building_list.html:27
+msgid "Other buildings"
+msgstr "Inne budynki"
+
+#: .\communities\templates\communities\building_list.html:41
 msgid "Add new building"
-msgstr "budynek"
+msgstr "Dodaj nowy budynek"
 
-#: .\communities\views\building_create.py:23
-#, fuzzy
-#| msgid "Logged in successfully."
+#: .\communities\views\building_create.py:20
 msgid "Building created successfully."
-msgstr "Zalogowano pomyślnie."
+msgstr "Budynek został utworzony pomyślnie."
 
-#: .\dashboards\filters.py:8 .\issues\forms.py:12
+#: .\communities\views\building_update.py:27
+msgid "Building updated successfully."
+msgstr "Budynek został pomyślnie zaktualizowany."
+
+#: .\dashboards\filters.py:8 .\issues\filters.py:10 .\issues\forms.py:12
 msgid "Title"
 msgstr "Tytuł"
 
-#: .\dashboards\filters.py:10
+#: .\dashboards\filters.py:10 .\issues\filters.py:12
+#: .\issues\templates\issues\issue_detail.html:19
 msgid "Status"
 msgstr "Status"
 
-#: .\dashboards\filters.py:13 .\issues\forms.py:15
+#: .\dashboards\filters.py:13 .\issues\filters.py:15 .\issues\forms.py:15
 msgid "Severity"
 msgstr "Istotność"
 
@@ -134,83 +150,181 @@ msgstr "Administrator"
 msgid "Create building"
 msgstr "Stwórz budynek"
 
-#: .\dashboards\templates\dashboards\dashboard_administrator.html:19
-msgid "Invite new property manager"
-msgstr "Zaproś nowego zarządcę"
-
+#: .\dashboards\templates\dashboards\dashboard_administrator.html:18
 #: .\dashboards\templates\dashboards\dashboard_property_manager.html:15
 msgid "Reported Issues"
 msgstr "Zgłoszone problemy"
 
+#: .\dashboards\templates\dashboards\dashboard_administrator.html:22
+msgid "Invite new property manager"
+msgstr "Zaproś nowego zarządcę"
+
+#: .\dashboards\templates\dashboards\dashboard_administrator.html:25
 #: .\dashboards\templates\dashboards\dashboard_property_manager.html:17
 msgid "Invite Resident"
 msgstr "Zaproś mieszkańca"
 
-#: .\dashboards\templates\dashboards\dashboard_resident.html:14
+#: .\dashboards\templates\dashboards\dashboard_resident.html:11
+#: .\issues\templates\issues\issue_list.html:10
+msgid "Issues"
+msgstr "Zgłoszenia"
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:15
+#: .\issues\templates\issues\issue_list.html:14
+msgid "No issues match the current filters. Try adjusting the filters."
+msgstr "Brak problemów pasujących do bieżących filtrów. Spróbuj dostosować filtry."
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:17
+#: .\issues\templates\issues\issue_list.html:16
+#, fuzzy
+#| msgid "Currently there are no buildings..."
+msgid "Currently there are no issues..."
+msgstr "Obecnie nie ma żadnych budynków..."
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:29
+#: .\issues\templates\issues\issue_list.html:28
+msgid "first"
+msgstr "pierwsza"
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:30
+#: .\issues\templates\issues\issue_list.html:29
+msgid "previous"
+msgstr "poprzednia"
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:32
+#: .\issues\templates\issues\issue_list.html:31
+msgid "Page"
+msgstr "Strona"
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:32
+#: .\issues\templates\issues\issue_list.html:31
+msgid "of"
+msgstr "z"
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:34
+#: .\issues\templates\issues\issue_list.html:33
+msgid "next"
+msgstr "następna"
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:35
+#: .\issues\templates\issues\issue_list.html:34
+msgid "last"
+msgstr "ostatnia"
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:41
+msgid "Report Issue"
+msgstr "Zgłoś problem"
+
+#: .\dashboards\templates\dashboards\dashboard_resident.html:45
+#: .\dashboards\templates\dashboards\dashboard_resident.html:49
+#: .\issues\templates\issues\issue_list.html:40
+#: .\issues\templates\issues\issue_list.html:44
 msgid "Search"
 msgstr "Szukaj"
 
-#: .\dashboards\templates\dashboards\dashboard_resident.html:23
-msgid "No entries to display."
-msgstr "Brak zgłoszeń do wyświetlenia."
+#: .\issues\filters.py:17 .\issues\templates\issues\issue_detail.html:13
+#: .\users\forms.py:12
+msgid "Building"
+msgstr "Budynek"
 
 #: .\issues\forms.py:14
 msgid "Location"
 msgstr "Miejsce"
 
-#: .\issues\forms.py:16 .\issues\templates\issues\issue_detail.html:16
+#: .\issues\forms.py:16 .\issues\templates\issues\issue_detail.html:21
 msgid "Photo"
 msgstr "Zdjęcie"
 
-#: .\issues\models.py:12
+#: .\issues\models.py:13
 msgid "Common Area"
 msgstr "Część wspólna"
 
-#: .\issues\models.py:13
+#: .\issues\models.py:14
 msgid "Apartment"
 msgstr "Apartament"
 
-#: .\issues\models.py:14
+#: .\issues\models.py:15
 msgid "Garage"
 msgstr "Garaż"
 
-#: .\issues\models.py:17
+#: .\issues\models.py:18
 msgid "Low"
 msgstr "Niska"
 
-#: .\issues\models.py:18
+#: .\issues\models.py:19
 msgid "Medium"
 msgstr "Średnia"
 
-#: .\issues\models.py:19
+#: .\issues\models.py:20
 msgid "High"
 msgstr "Wysoka"
 
-#: .\issues\models.py:22
+#: .\issues\models.py:23
 msgid "Open"
 msgstr "Otwarta"
 
-#: .\issues\models.py:23
-msgid "In progress"
-msgstr "W trakcie"
-
 #: .\issues\models.py:24
-msgid "Resolved"
-msgstr "Rozwiązana"
-
-#: .\issues\models.py:25
 msgid "Closed"
 msgstr "Zamknięta"
 
-#: .\issues\templates\issues\issue_detail.html:10
+#: .\issues\models.py:47
+#, fuzzy, python-brace-format
+#| msgid "New issue in building {self.building.name}. Level: {self.severity}"
+msgid "New issue in building {self.building.name}. Level: {self.severity}"
+msgstr ""
+"Nowe zgłoszenie w budynku {form.instance.building}. Poziom: {form.instance."
+"severity}"
+
+#: .\issues\models.py:48
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "New issue in building {self.building.name}. Description: {self."
+#| "description}"
+msgid ""
+"New issue in building {self.building.name}. Description: {self.description}"
+msgstr ""
+"Nowe zgłoszenie w budynku {form.instance.building}. Opis: {form.instance."
+"description}"
+
+#: .\issues\templates\issues\issue_detail.html:11
 msgid "Issue"
 msgstr "Zgłoszenie"
 
-#: .\issues\templates\issues\issue_detail.html:14
-#, fuzzy
-#| msgid "Report"
+#: .\issues\templates\issues\issue_detail.html:17
 msgid "Reported by"
-msgstr "Zgłoś"
+msgstr "Zgłoszone przez"
+
+#: .\issues\templates\issues\issue_detail.html:31
+#, fuzzy
+#| msgid "Currently there are no buildings..."
+msgid "Currently there are no comments..."
+msgstr "Obecnie nie ma żadnych budynków..."
+
+#: .\issues\templates\issues\issue_detail.html:43
+#: .\issues\templates\issues\issue_detail.html:66
+msgid "Update"
+msgstr "Aktualizacja"
+
+#: .\issues\templates\issues\issue_detail.html:45
+#: .\issues\templates\issues\issue_detail.html:68
+msgid "Comment"
+msgstr "Komentarz"
+
+#: .\issues\templates\issues\issue_detail.html:49
+msgid "Author"
+msgstr "Autor"
+
+#: .\issues\templates\issues\issue_detail.html:56
+msgid "Add update"
+msgstr "Dodaj aktualizację"
+
+#: .\issues\templates\issues\issue_detail.html:58
+msgid "Add comment"
+msgstr "Dodaj komentarz"
+
+#: .\issues\templates\issues\issue_detail.html:75
+msgid "Close"
+msgstr "Zamknięta"
 
 #: .\issues\templates\issues\issue_report.html:11
 msgid "Report a fault"
@@ -220,59 +334,115 @@ msgstr "Zgłoś usterkę"
 msgid "Report"
 msgstr "Zgłoś"
 
-#: .\issues\views\issue_report.py:27
-#, python-brace-format
-msgid ""
-"New issue in building {form.instance.building}. Level: {form.instance."
-"severity}"
-msgstr ""
-"Nowe zgłoszenie w budynku {form.instance.building}. Poziom: {form.instance."
-"severity}"
+#: .\issues\views\issue_detail.py:33
+msgid "The comment was added successfully."
+msgstr "Komentarz został pomyślnie dodany."
 
-#: .\issues\views\issue_report.py:28
-#, python-brace-format
-msgid ""
-"New issue in building {form.instance.building}. Description: {form.instance."
-"description}"
-msgstr ""
-"Nowe zgłoszenie w budynku {form.instance.building}. Opis: {form.instance."
-"description}"
+#: .\issues\views\issue_report.py:32
+msgid "The issue has been reported successfully."
+msgstr "Problem został pomyślnie zgłoszony."
 
-#: .\users\forms.py:12 .\users\forms.py:19 .\users\forms.py:37
+#: .\landing\templates\landing\index.html:6
+msgid "Welcome to Our Platform"
+msgstr "Witamy na naszej platformie"
+
+#: .\landing\templates\landing\index.html:12
+msgid "Welcome!"
+msgstr "Witamy!"
+
+#: .\landing\templates\landing\index.html:13
+msgid "We’re excited to have you here!"
+msgstr "Cieszymy się, że jesteś z nami!"
+
+#: .\landing\templates\landing\index.html:18
+msgid "Access Your Community Portal"
+msgstr "Uzyskaj dostęp do swojego portalu społecznościowego"
+
+#: .\landing\templates\landing\index.html:19
+msgid ""
+"Sign in to explore your dashboard, manage community issues, and stay "
+"connected."
+msgstr ""
+"Zaloguj się, aby korzystać z panelu, zarządzać sprawami społeczności i "
+"pozostać na bieżąco."
+
+#: .\landing\templates\landing\index.html:22
+msgid "Need Access?"
+msgstr "Potrzebujesz dostępu?"
+
+#: .\landing\templates\landing\index.html:23
+msgid ""
+"If you don't have an account, please contact your property manager to "
+"receive an invitation."
+msgstr ""
+"Jeśli nie masz konta, skontaktuj się z zarządcą nieruchomości, aby otrzymać "
+"zaproszenie."
+
+#: .\landing\templates\landing\index.html:28
+msgid "Log In"
+msgstr "Zaloguj się"
+
+#: .\landing\templates\landing\navbar.html:27
+#: .\users\templates\users\login.html:10
+msgid "Login"
+msgstr "Logowanie"
+
+#: .\landing\templates\landing\navbar.html:31
+msgid "Dashboard Property Manager"
+msgstr "Dashboard Zarządcy Nieruchomości"
+
+#: .\landing\templates\landing\navbar.html:34
+msgid "Dashboard Administrator"
+msgstr "Dashboard Administratora"
+
+#: .\landing\templates\landing\navbar.html:37
+msgid "Dashboard Resident"
+msgstr "Dashboard Mieszkańca"
+
+#: .\landing\templates\landing\navbar.html:46
+msgid "Logout"
+msgstr "Wyloguj"
+
+#: .\users\forms.py:12 .\users\forms.py:19 .\users\forms.py:32
+#: .\users\templates\users\resident_list.html:19
 msgid "Email"
 msgstr "Email"
 
-#: .\users\forms.py:12
-msgid "Building"
-msgstr "Budynek"
-
-#: .\users\forms.py:34
+#: .\users\forms.py:29
 msgid "Username"
 msgstr "Nazwa użytkownika"
 
-#: .\users\forms.py:35
+#: .\users\forms.py:30
 msgid "First name"
 msgstr "Imię"
 
-#: .\users\forms.py:36
+#: .\users\forms.py:31
 msgid "Last name"
 msgstr "Nazwisko"
 
-#: .\users\forms.py:41
+#: .\users\forms.py:33
+msgid "Phone number"
+msgstr "Numer telefonu"
+
+#: .\users\forms.py:37
 msgid "User with this username already exists!"
 msgstr "Użytkownik o tej nazwie już istnieje!"
 
-#: .\users\forms.py:42
+#: .\users\forms.py:38
 msgid "User with this email already exists!"
 msgstr "Użytkownik o tym emailu już istnieje!"
 
-#: .\users\forms.py:43
+#: .\users\forms.py:39
 msgid "The two password fields didn't match."
 msgstr "Hasła nie pasują do siebie."
 
-#: .\users\forms.py:44 .\users\forms.py:45 .\users\forms.py:46
+#: .\users\forms.py:40 .\users\forms.py:41 .\users\forms.py:42
 msgid "This field is required."
 msgstr "To pole jest wymagane."
+
+#: .\users\forms.py:43
+msgid "Your email did not receive an invitation to the application."
+msgstr "Twój adres email nie otrzymał zaproszenia do aplikacji."
 
 #: .\users\templates\users\invite_send.html:12
 msgid "Invite"
@@ -294,37 +464,78 @@ msgstr "do tej aplikacji"
 msgid "Send Invitation"
 msgstr "Wyślij zaproszenie"
 
-#: .\users\templates\users\login.html:10
-msgid "Login"
-msgstr "Logowanie"
-
 #: .\users\templates\users\login.html:15
 msgid "Log in"
 msgstr "Zaloguj się"
 
-#: .\users\templates\users\register.html:10
+#: .\users\templates\users\registration.html:10
 msgid "Registration"
 msgstr "Rejestracja"
 
-#: .\users\templates\users\register.html:18
+#: .\users\templates\users\registration.html:18
 msgid "Register"
 msgstr "Zarejestruj się"
 
-#: .\users\views\login.py:18
+#: .\users\templates\users\resident_list.html:16
+msgid "First Name"
+msgstr "Imię"
+
+#: .\users\templates\users\resident_list.html:17
+msgid "Last Name"
+msgstr "Nazwisko"
+
+#: .\users\templates\users\resident_list.html:18
+msgid "Phone"
+msgstr "Telefon"
+
+#: .\users\templates\users\resident_list.html:20
+msgid "Delete"
+msgstr "Usuń"
+
+#: .\users\templates\users\resident_list.html:45
+msgid "Currently there are no residents..."
+msgstr "Obecnie nie ma żadnych mieszkańców..."
+
+#: .\users\views\invite_send.py:18 .\users\views\invite_send.py:46
+msgid "A user with this email address is already registered in the system."
+msgstr "Użytkownik z tym adresem email jest już zarejestrowany w systemie."
+
+#: .\users\views\invite_send.py:35 .\users\views\invite_send.py:61
+msgid "An invitation was successfully sent."
+msgstr "Zaproszenie zostało pomyślnie wysłane."
+
+#: .\users\views\login.py:15
 msgid "Your login details are incorrect."
 msgstr "Twoje dane logowania są niepoprawne."
 
-#: .\users\views\login.py:22
+#: .\users\views\login.py:19
 msgid "Logged in successfully."
 msgstr "Zalogowano pomyślnie."
 
-#: .\users\views\logout.py:17
-#, fuzzy
-#| msgid "Logged in successfully."
+#: .\users\views\logout.py:14
 msgid "Logged out successfully."
-msgstr "Zalogowano pomyślnie."
+msgstr "Wylogowano pomyślnie."
 
-#: .\users\views\registration.py:36
+#: .\users\views\registration.py:43
 #, python-brace-format
 msgid "Account created successfully for {self.request.user.username}."
 msgstr "Konto zostało pomyślnie utworzone dla {self.request.user.username}."
+
+#: .\users\views\resident_delete.py:25
+#, fuzzy
+#| msgid "Logged in successfully."
+msgid "Resident successfully deleted."
+msgstr "Zalogowano pomyślnie."
+
+#: .\users\views\resident_delete.py:34
+msgid "You do not have permission to delete this resident."
+msgstr "Nie masz uprawnień do usunięcia tego mieszkańca."
+
+#~ msgid "No entries to display."
+#~ msgstr "Brak zgłoszeń do wyświetlenia."
+
+#~ msgid "In progress"
+#~ msgstr "W trakcie"
+
+#~ msgid "Resolved"
+#~ msgstr "Rozwiązana"
